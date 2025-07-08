@@ -631,5 +631,48 @@
     "output_production": null,
     "fuel_type": null,
     "operational_notes": "Provides storage space for items. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
-  }
+  },{
+  "id": "chest_aluminum",
+  "name": "Chest",
+  "type": "Storage",
+  "tier": "Aluminum",
+  "description": "An aluminum storage container for items and resources.",
+  "crafting_station": "Placeables Tab (Construction Tool)",
+  "crafting_materials": [
+    {
+      "item_id": "aluminum_ingot",
+      "quantity": 15
+    },
+    {
+      "item_id": "silicone_block",
+      "quantity": 5
+    }
+  ],
+  "power_consumption_w": null,
+  "output_production": null,
+  "fuel_type": null,
+  "operational_notes": "Provides storage space for items. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
+},
+{
+  "id": "chest_plastinium",
+  "name": "Chest",
+  "type": "Storage",
+  "tier": "Plastinium",
+  "description": "A plastinium storage container for items and resources.",
+  "crafting_station": "Placeables Tab (Construction Tool)",
+  "crafting_materials": [
+    {
+      "item_id": "plastanium_ingot",
+      "quantity": 15
+    },
+    {
+      "item_id": "advanced_component",
+      "quantity": 5
+    }
+  ],
+  "power_consumption_w": null,
+  "output_production": null,
+  "fuel_type": null,
+  "operational_notes": "Provides storage space for items. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
+}
 ]
