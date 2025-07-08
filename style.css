@@ -434,3 +434,344 @@ footer {
     padding-top: 20px;
     border-top: 2px solid var(--dune-panel-border);
 }
+=======
+/* Basic Reset & Body */
+body, h1, h2, h3, p, ul, li, div, button, header, main, section, footer {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #1a1a1a; /* Dark background */
+    color: #e0e0e0; /* Light grey text */
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #444; /* Darker border for dark theme */
+}
+
+header h1 {
+    color: #d4a373; /* Sandy/gold accent for title */
+    font-size: 2em;
+}
+
+/* Informational note at the top */
+.info-note {
+    text-align: center;
+    font-style: italic;
+    margin: 10px 0 20px 0;
+    color: #aaa; /* Lighter grey for the note */
+    font-size: 0.9em;
+}
+
+/* Calculator Layout */
+.calculator-layout {
+    display: flex;
+    gap: 20px; /* Space between panels */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.panel {
+    background-color: #2c2c2c; /* Darker panel background */
+    padding: 15px;
+    border: 1px solid #444; /* Panel border */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for dark theme */
+}
+
+#item-selection-panel {
+    flex: 1; /* Takes up 1 part of available space */
+    min-width: 300px; /* Minimum width before wrapping */
+    order: 1; /* Left */
+}
+
+#total-materials-panel {
+    flex: 1;
+    min-width: 300px; /* Adjusted for two sub-sections */
+    order: 2; /* Center */
+}
+
+#current-build-panel {
+    flex: 1.5; /* Takes up 1.5 parts of available space */
+    min-width: 350px;
+    order: 3; /* Right */
+}
+
+.panel h2 { /* General panel titles */
+    font-size: 1.4em;
+    color: #faebd7; /* Antique white / light sand for panel titles */
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #444;
+}
+
+/* Styling for H3 titles within panels, like specific cost sections */
+.panel h3 {
+    font-size: 1.1em;
+    color: #d4a373; /* Sandy/gold accent */
+    margin-bottom: 10px;
+}
+
+/* Item Styling (in selection panel) */
+.component-category {
+    margin-bottom: 15px;
+}
+
+.component-category h3 { /* Category titles like "Utilities" */
+    font-size: 1.2em;
+    color: #c9ada7; /* A muted rose/sand color for category headers */
+    margin-bottom: 8px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 4px;
+}
+
+.category-dropdown {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.item-details {
+    background-color: #333;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #555;
+}
+
+.item-details p {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+/* Current Build Panel Styling - selected items */
+#selected-items-list .selected-item {
+    background-color: #3a3a3a;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #e0e0e0;
+}
+
+#selected-items-list .selected-item-details {
+    flex-grow: 1;
+}
+
+#selected-items-list .item-name-display { /* Class for name in current build */
+    font-weight: bold;
+    color: #e8e8e8;
+    margin-bottom: 5px;
+}
+
+#selected-items-list .item-detail-small { /* Corrected class name from -nhỏ */
+    font-size: 0.8em;
+    color: #b0b0b0;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+#selected-items-list .item-detail-small strong {
+    color: #c9ada7; /* Muted accent for labels in current build details */
+}
+
+#selected-items-list .item-notes-display {
+    font-style: italic;
+    color: #999;
+}
+
+.add-item-btn, .remove-item-btn {
+    background-color: #5a9bd5;
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Slightly smaller padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+}
+
+.add-item-btn:hover {
+    background-color: #4a8ac9; /* Darker blue on hover */
+}
+
+.remove-item-btn {
+    background-color: #c0504d; /* A muted red */
+    margin-left: 10px;
+}
+
+.remove-item-btn:hover {
+    background-color: #a0403d; /* Darker red on hover */
+}
+
+.empty-build-message, .empty-totals-message {
+    color: #888; /* Grey for empty messages */
+    font-style: italic;
+    padding: 10px 0;
+}
+
+/* Total Materials Panel Styling */
+.totals-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Space between original and discounted costs */
+}
+
+#original-costs-container,
+#discounted-costs-container {
+    flex: 1; /* Each takes equal space */
+    min-width: 220px; /* Minimum width before wrapping */
+    background-color: #333; /* Background for these sub-sections */
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #4a4a4a;
+}
+
+#materials-summary-list ul,
+#materials-summary-discounted-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#materials-summary-list li,
+#materials-summary-discounted-list li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #555;
+    font-size: 0.95em;
+    color: #ccc;
+}
+#materials-summary-list li:last-child,
+#materials-summary-discounted-list li:last-child {
+    border-bottom: none;
+}
+
+#power-summary {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #444;
+}
+#power-summary h3 {
+    color: #d4a373;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+#power-summary p {
+    font-size: 0.95em;
+    color: #ccc;
+}
+#power-summary #net-power {
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 2px solid #444; /* Darker border for dark theme */
+    font-size: 0.9em;
+    color: #aaa; /* Lighter grey for footer text */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .calculator-layout {
+        flex-direction: column; /* Stack panels vertically */
+    }
+    .panel {
+        min-width: 100%; /* Panels take full width */
+        margin-bottom: 20px;
+    }
+    .totals-container {
+        flex-direction: column; /* Stack cost summaries vertically on small screens */
+    }
+    #original-costs-container,
+    #discounted-costs-container {
+        min-width: 100%; /* Full width for cost summaries on small screens */
+    }
+}
+
+/* Error message styling */
+.error-message {
+    color: #ff6961; /* Red for error messages */
+    font-weight: bold;
+    padding: 10px;
+    background-color: #402020;
+    border: 1px solid #ff6961;
+    border-radius: 4px;
+}
+
+/* Search Input */
+#item-search {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.quantity-controls button {
+    background-color: #5a9bd5;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.quantity-controls button:hover {
+    background-color: #4a8ac9;
+}
+.quantity-controls span {
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Current Build Panel Additions */
+#selected-items-list .item-crafting-materials,
+#selected-items-list .item-power,
+#selected-items-list .item-operational-notes {
+    font-size: 0.85em;
+    color: #bbb;
+    margin-left: 10px;
+    line-height: 1.4;
+}
+#selected-items-list .item-operational-notes {
+    font-style: italic;
+    color: #a0a0a0;
+}
+
+/* Warning Message */
+.warning-message {
+    color: #ff6961;
+    font-weight: bold;
+    margin-top: 10px;
+}
