@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dune: Awakening - Base Build Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p class="info-note">This tool attempts to be as accurate as possible. The Deep Desert discounts change. You "should" get all resources back. It "should be" 50% off rounded up.</p>
+    <header>
+        <h1>Dune: Awakening - Base Build Calculator</h1>
+    </header>
+    <main class="calculator-layout">
+        <section id="item-selection-panel" class="panel">
+            <h2>Available Components</h2>
+            <input type="text" id="item-search" placeholder="Search items...">
+            <div id="component-list"></div>
+        </section>
+        <section id="current-build-panel" class="panel">
+            <h2>Current Build</h2>
+            <div id="selected-items-list"></div>
+        </section>
+        <section id="total-materials-panel" class="panel">
+            <h2>Totals</h2>
+            <div class="totals-container">
+                <div id="original-costs-container">
+                    <h3>Required Materials (Original Cost)</h3>
+                    <div id="materials-summary-list"></div>
+                </div>
+                <div id="discounted-costs-container">
+                    <h3>Deep Desert Discount (50% off, rounded up)</h3>
+                    <div id="materials-summary-discounted-list"></div>
+                </div>
+            </div>
+            <div id="power-summary" style="margin-top: 20px;">
+                <h3>Power Overview</h3>
+                <p>Total Power Generated: <span id="total-power-generated">0</span> W</p>
+                <p>Total Power Consumed: <span id="total-power-consumed">0</span> W</p>
+                <p>Net Power: <span id="net-power">0</span> W</p>
+                <div id="power-warning"></div>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+    <script src="app.js"></script>
+</body>
+</html>
