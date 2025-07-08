@@ -1,0 +1,436 @@
+/* Dune Awakening Themed Styles */
+
+/* Basic Reset & Variables */
+:root {
+    --dune-bg-dark: #1C1713; /* Very dark, desaturated brown */
+    --dune-panel-bg: #2E2620; /* Darker, desaturated brown/sand */
+    --dune-panel-bg-lighter: #3C342E; /* Slightly lighter for hover or details */
+    --dune-panel-border: #504038; /* Muted brown for borders */
+    --dune-text-primary: #E0D8CC; /* Off-white, light sand */
+    --dune-text-secondary: #B0A090; /* Muted sand/gray */
+    --dune-accent-spice: #D46A2D; /* Spice orange/rust */
+    --dune-accent-spice-darker: #B8561F; /* Darker spice for hover */
+    --dune-accent-metal: #8C7864; /* Muted bronze/copper */
+    --dune-accent-fremen-blue: #4A8ABF; /* Muted blue for some accents like buttons */
+    --dune-accent-fremen-blue-darker: #3A6A9F; /* Darker blue for hover */
+    --dune-danger-text: #FF776B; /* For warnings/errors */
+    --dune-danger-bg: #4A2A26; /* Background for error messages */
+
+    --font-body: 'Arial Narrow', Arial, sans-serif;
+    --font-heading: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* More dramatic headings */
+}
+
+body, h1, h2, h3, p, ul, li, div, button, header, main, section, footer, input, select {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-body);
+}
+
+body {
+    line-height: 1.6;
+    background-color: var(--dune-bg-dark);
+    color: var(--dune-text-primary);
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px; /* Increased margin */
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--dune-panel-border); /* Thicker, thematic border */
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dune-accent-spice);
+    font-size: 2.8em; /* Larger */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for depth */
+}
+
+/* Informational note at the top */
+.info-note {
+    text-align: center;
+    font-style: italic;
+    margin: 15px auto 25px auto; /* Centered with auto margins */
+    color: var(--dune-text-secondary);
+    font-size: 0.9em;
+    max-width: 800px; /* Limit width */
+    border: 1px dashed var(--dune-panel-border);
+    padding: 10px;
+    background-color: var(--dune-panel-bg);
+    border-radius: 0px; /* Sharper edges */
+}
+
+/* Calculator Layout */
+.calculator-layout {
+    display: flex;
+    gap: 25px; /* Increased space */
+    flex-wrap: wrap;
+}
+
+.panel {
+    background-color: var(--dune-panel-bg);
+    padding: 20px; /* Increased padding */
+    border: 2px solid var(--dune-panel-border);
+    border-radius: 2px; /* Sharper edges */
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+}
+
+#item-selection-panel {
+    flex: 1;
+    min-width: 320px;
+    order: 1; /* Left */
+}
+
+#current-build-panel {
+    flex: 1.5;
+    min-width: 380px;
+    order: 2; /* Center */
+}
+
+#total-materials-panel {
+    flex: 1;
+    min-width: 320px;
+    order: 3; /* Right */
+}
+
+.panel h2 {
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+    font-size: 1.8em; /* Larger panel titles */
+    color: var(--dune-accent-spice);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--dune-panel-border);
+    text-transform: uppercase;
+}
+
+.panel h3 {
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+    font-size: 1.3em;
+    color: var(--dune-accent-metal); /* Metal accent for sub-headers */
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* Item Styling (in selection panel) */
+.component-category {
+    margin-bottom: 20px;
+    border: 1px solid var(--dune-panel-border);
+    padding: 10px;
+    background-color: var(--dune-bg-dark); /* Slightly darker inset */
+}
+
+.component-category h3 {
+    font-family: var(--font-body); /* Use body font for these sub-sub-headers for clarity */
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--dune-text-primary);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--dune-panel-border);
+    padding-bottom: 6px;
+    text-transform: none; /* No uppercase for these */
+}
+
+#item-search,
+.category-dropdown {
+    width: 100%;
+    padding: 10px; /* Increased padding */
+    margin-bottom: 12px;
+    border: 1px solid var(--dune-panel-border);
+    border-radius: 0px; /* Sharper edges */
+    background-color: var(--dune-bg-dark); /* Darker input fields */
+    color: var(--dune-text-primary);
+    font-size: 1em;
+}
+
+#item-search::placeholder {
+    color: var(--dune-text-secondary);
+}
+
+.item-details {
+    background-color: var(--dune-panel-bg-lighter); /* Lighter detail box */
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 0px;
+    border: 1px solid var(--dune-panel-border);
+    font-size: 0.9em;
+}
+
+.item-details p {
+    color: var(--dune-text-secondary);
+    margin-bottom: 6px;
+}
+.item-details p strong {
+    color: var(--dune-text-primary);
+}
+
+/* Current Build Panel Styling - selected items */
+#selected-items-list .selected-item {
+    background-color: var(--dune-panel-bg-lighter);
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 0px;
+    border: 1px solid var(--dune-panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--dune-text-primary);
+}
+
+#selected-items-list .selected-item-details {
+    flex-grow: 1;
+}
+
+#selected-items-list .selected-item p { /* General text within selected item */
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+#selected-items-list .selected-item p:first-child { /* Name of the item */
+    font-weight: bold;
+    color: var(--dune-accent-spice);
+    font-size: 1.1em;
+}
+
+
+#selected-items-list .item-crafting-materials,
+#selected-items-list .item-power,
+#selected-items-list .item-operational-notes {
+    font-size: 0.85em;
+    color: var(--dune-text-secondary);
+    margin-left: 0; /* Remove fixed margin */
+    padding-left: 10px; /* Indent with padding */
+    border-left: 2px solid var(--dune-accent-metal); /* Accent line */
+}
+#selected-items-list .item-operational-notes {
+    font-style: italic;
+    color: var(--dune-accent-metal);
+}
+#selected-items-list .item-operational-notes strong,
+#selected-items-list .item-crafting-materials strong,
+#selected-items-list .item-power strong {
+    color: var(--dune-text-primary);
+}
+
+
+/* Buttons */
+.add-item-btn,
+.quantity-controls button {
+    background-color: var(--dune-accent-fremen-blue);
+    color: var(--dune-text-primary);
+    border: 1px solid var(--dune-accent-fremen-blue-darker);
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.95em;
+    font-weight: bold;
+    border-radius: 0px; /* Sharper */
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.add-item-btn:hover,
+.quantity-controls button:hover {
+    background-color: var(--dune-accent-fremen-blue-darker);
+    border-color: var(--dune-accent-fremen-blue);
+}
+
+/* Remove button specific styling - deprecated, using quantity controls */
+.remove-item-btn {
+    display: none; /* Assuming quantity controls handle removal */
+}
+
+
+.empty-build-message, .empty-totals-message {
+    color: var(--dune-text-secondary);
+    font-style: italic;
+    padding: 15px;
+    border: 1px dashed var(--dune-panel-border);
+    text-align: center;
+}
+
+/* Total Materials Panel Styling */
+.totals-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#original-costs-container,
+#discounted-costs-container {
+    flex: 1;
+    min-width: 240px;
+    background-color: var(--dune-panel-bg-lighter);
+    padding: 15px;
+    border-radius: 0px;
+    border: 1px solid var(--dune-panel-border);
+}
+
+#materials-summary-list ul,
+#materials-summary-discounted-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#materials-summary-list li,
+#materials-summary-discounted-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--dune-panel-border); /* Solid, thematic border */
+    font-size: 0.95em;
+    color: var(--dune-text-secondary);
+}
+#materials-summary-list li:last-child,
+#materials-summary-discounted-list li:last-child {
+    border-bottom: none;
+}
+#materials-summary-list li strong, /* If material names are wrapped in strong */
+#materials-summary-discounted-list li strong {
+    color: var(--dune-text-primary);
+}
+
+
+#power-summary {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid var(--dune-panel-border);
+}
+#power-summary h3 { /* Already styled by .panel h3 */
+    margin-bottom: 8px;
+}
+
+#power-summary p {
+    font-size: 1em; /* Slightly larger for readability */
+    color: var(--dune-text-primary);
+    margin-bottom: 5px;
+}
+#power-summary #net-power {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.power-positive {
+    color: #73d487; /* Light green for positive power */
+}
+.power-negative {
+    color: var(--dune-danger-text); /* Use existing danger color for negative power */
+}
+.power-neutral {
+    color: var(--dune-text-primary); /* Default text color for neutral power */
+}
+/* Net power color is handled by JS, but default can be set if needed */
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px; /* More space */
+    padding-top: 20px;
+    border-top: 3px solid var(--dune-panel-border);
+    font-size: 0.9em;
+    color: var(--dune-text-secondary);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Less padding on small screens */
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    .calculator-layout {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .panel {
+        min-width: 100%;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    .panel h2 {
+        font-size: 1.5em;
+    }
+    .panel h3 {
+        font-size: 1.2em;
+    }
+    .totals-container {
+        flex-direction: column;
+    }
+    #original-costs-container,
+    #discounted-costs-container {
+        min-width: 100%;
+    }
+    #item-search, .category-dropdown, .add-item-btn, .quantity-controls button {
+        padding: 10px; /* Consistent padding */
+        font-size: 1em;
+    }
+}
+
+/* Error and Warning Messages */
+.error-message, .warning-message {
+    color: var(--dune-danger-text);
+    font-weight: bold;
+    padding: 12px;
+    background-color: var(--dune-danger-bg);
+    border: 1px solid var(--dune-danger-text);
+    border-radius: 0px;
+    margin-top: 10px;
+}
+.warning-message { /* Specifically for power warning, if it needs different styling */
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+/* Search Input - already covered by general input styling */
+
+/* Quantity Controls */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Keep some space from item details */
+}
+.quantity-controls button { /* Styling already defined under .add-item-btn */
+    padding: 6px 10px; /* Slightly smaller for these controls */
+    font-size: 1em; /* Larger font for +/- */
+    margin: 0 5px;
+}
+.quantity-controls span {
+    min-width: 25px; /* Wider for quantity */
+    text-align: center;
+    font-size: 1em;
+    color: var(--dune-text-primary);
+    font-weight: bold;
+}
+
+/* Unused classes from original CSS - can be removed if confirmed not used by JS */
+/* #selected-items-list .item-name-display - replaced by styling p:first-child */
+/* #selected-items-list .item-detail-small - replaced by general p styling and specific classes */
+/* #selected-items-list .item-notes-display - replaced by .item-operational-notes */
+/* .remove-item-btn - hidden as quantity controls are primary */
+
+/* Accessibility Helper Class */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Style for #power-summary (moved from inline) */
+#power-summary {
+    margin-top: 25px; /* Kept consistent with surrounding spacing from previous CSS version */
+    padding-top: 20px;
+    border-top: 2px solid var(--dune-panel-border);
+}
