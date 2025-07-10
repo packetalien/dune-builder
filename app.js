@@ -1,58 +1,65 @@
 // Dune: Awakening Base Build Calculator
-// Main JavaScript file
+// Main JavaScript file for handling UI interactions and calculations
 
-let buildingData = null; // To store the loaded JSON data
-let currentBuild = []; // Array to store items with their quantities and calculated net power per unit
+let buildingData = null; // Stores the loaded building component data
+let currentBuild = []; // Tracks the user's current build items
 
-// --- DOM Elements Cache ---
-// It's good practice to cache DOM elements that are frequently accessed or critical for the application.
-let componentListDiv,
-    selectedItemsListDiv,
-    materialsSummaryListDiv,
-    materialsSummaryDiscountedListDiv,
-    netPowerSpan,
-    totalPowerGeneratedSpan, // Added for caching
-    totalPowerConsumedSpan,  // Added for caching
-    powerWarningDiv;         // Added for caching
-
-// --- Initialization ---
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Calculator Initializing...");
 
-    // Cache all critical DOM elements
-    componentListDiv = document.getElementById('component-list');
-    selectedItemsListDiv = document.getElementById('selected-items-list');
-    materialsSummaryListDiv = document.getElementById('materials-summary-list');
-    materialsSummaryDiscountedListDiv = document.getElementById('materials-summary-discounted-list');
-    netPowerSpan = document.getElementById('net-power');
-    totalPowerGeneratedSpan = document.getElementById('total-power-generated');
-    totalPowerConsumedSpan = document.getElementById('total-power-consumed');
-    powerWarningDiv = document.getElementById('power-warning');
+    // Cache DOM elements for efficiency
+    const componentListDiv = document.getElementById('component-list');
+    const selectedItemsListDiv = document.getElementById('selected-items-list');
+    const materialsSummaryListDiv = document.getElementById('materials-summary-list');
+    const materialsSummaryDiscountedListDiv = document.getElementById('materials-summary-discounted-list');
+    const netPowerSpan = document.getElementById('net-power');
+    const totalPowerGeneratedSpan = document.getElementById('total-power-generated');
+    const totalPowerConsumedSpan = document.getElementById('total-power-consumed');
+    const powerWarningDiv = document.getElementById('power-warning');
 
-    // Validate that all critical DOM elements are found
+    // Check for critical DOM elements
     if (!componentListDiv || !selectedItemsListDiv || !materialsSummaryListDiv ||
         !materialsSummaryDiscountedListDiv || !netPowerSpan || !totalPowerGeneratedSpan ||
         !totalPowerConsumedSpan || !powerWarningDiv) {
         console.error("Critical DOM elements not found! Check your HTML IDs. Initialization halted.");
-        // Optionally, display a user-friendly error message in the UI
         document.body.innerHTML = '<p class="error-message" style="padding: 20px; text-align: center;">Critical error: UI components missing. Cannot start calculator.</p>';
         return;
     }
 
-    await loadBuildingData(); // Load data from JSON
-    updateCurrentBuildPanel(); // Initial render of the (empty) build panel
-    updateTotalsPanel({}, {}, 0, 0, 0); // Initial render of the (empty) totals panel
+    await loadBuildingData();
+    updateCurrentBuildPanel();
+    updateTotalsPanel({}, {}, 0, 0, 0);
 
-    // Setup search functionality
+    // NEW: Enhanced search with debounce for performance
     const itemSearchInput = document.getElementById('item-search');
     if (itemSearchInput) {
+        let searchTimeout;
         itemSearchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            filterComponentList(searchTerm);
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => filterComponentList(this.value), 300); // 300ms debounce
         });
     } else {
         console.warn("'item-search' input not found. Search functionality will be unavailable.");
     }
+
+    // NEW: Event listeners for water calculator modal
+    document.getElementById('open-water-calculator').addEventListener('click', () => {
+        document.getElementById('water-calculator-modal').style.display = 'block';
+        updateWaterCalculator(currentBuild);
+    });
+    document.getElementById('close-water-calculator').addEventListener('click', () => {
+        document.getElementById('water-calculator-modal').style.display = 'none';
+    });
+
+    // NEW: Event listener for exporting build report
+    document.getElementById('export-build').addEventListener('click', () => {
+        const report = generateBuildReport();
+        const blob = new Blob([report], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'build_report.txt';
+        link.click();
+    });
 });
 
 // --- Data Loading ---
@@ -67,32 +74,30 @@ async function loadBuildingData() {
         populateItemSelectionPanel();
     } catch (error) {
         console.error("Could not load building data:", error);
-        if (componentListDiv) { // Check if componentListDiv exists before modifying
+        const componentListDiv = document.getElementById('component-list');
+        if (componentListDiv) {
             componentListDiv.innerHTML = '<p class="error-message">Error loading building components. Please check console or try again later.</p>';
         }
     }
 }
 
 // --- UI Population and Filtering ---
-/**
- * Populates the item selection panel with categories and items from buildingData.
- */
 function populateItemSelectionPanel() {
+    const componentListDiv = document.getElementById('component-list');
     if (!buildingData || !componentListDiv) {
         console.error("Cannot populate item selection: data or component list div is missing.");
         return;
     }
-    componentListDiv.innerHTML = ''; // Clear previous content
+    componentListDiv.innerHTML = '';
 
     // Group items by type
     const itemsByType = buildingData.reduce((acc, item) => {
-        const type = item.type || "Unknown Type"; // Default type if missing
+        const type = item.type || "Unknown Type";
         acc[type] = acc[type] || [];
         acc[type].push(item);
         return acc;
     }, {});
 
-    // Create UI for each type category
     Object.keys(itemsByType).sort().forEach(type => {
         const categoryDiv = document.createElement('div');
         categoryDiv.className = 'component-category';
@@ -103,12 +108,11 @@ function populateItemSelectionPanel() {
 
         const dropdown = document.createElement('select');
         dropdown.className = 'category-dropdown';
-        // Sort items within the category by name
         itemsByType[type].sort((a, b) => a.name.localeCompare(b.name)).forEach(item => {
             const option = document.createElement('option');
             option.value = item.id;
             option.textContent = item.tier ? `${item.name} (${item.tier})` : item.name;
-            option.dataset.itemName = item.name.toLowerCase(); // For search
+            option.dataset.itemName = item.name.toLowerCase();
             dropdown.appendChild(option);
         });
         categoryDiv.appendChild(dropdown);
@@ -120,7 +124,6 @@ function populateItemSelectionPanel() {
             const selectedId = dropdown.value;
             const item = buildingData.find(i => i.id === selectedId);
             if (item) {
-                // Deep clone item data to prevent modification of original buildingData
                 handleAddItem(JSON.parse(JSON.stringify(item)));
             }
         };
@@ -130,10 +133,8 @@ function populateItemSelectionPanel() {
         detailsDiv.className = 'item-details';
         categoryDiv.appendChild(detailsDiv);
 
-        // Event listener to show item details when dropdown selection changes
         dropdown.addEventListener('change', () => displayItemDetails(dropdown, detailsDiv));
 
-        // Trigger change event initially to show details of the first item if available
         if (dropdown.options.length > 0) {
             dropdown.selectedIndex = 0;
             dropdown.dispatchEvent(new Event('change'));
@@ -142,11 +143,6 @@ function populateItemSelectionPanel() {
     });
 }
 
-/**
- * Displays details of the selected item from a dropdown in the provided detailsDiv.
- * @param {HTMLSelectElement} dropdown The dropdown element.
- * @param {HTMLDivElement} detailsDiv The div to display details in.
- */
 function displayItemDetails(dropdown, detailsDiv) {
     const selectedId = dropdown.value;
     const item = buildingData.find(i => i.id === selectedId);
@@ -158,76 +154,65 @@ function displayItemDetails(dropdown, detailsDiv) {
                 .join(', ');
             detailsHTML += `<p><strong>Cost:</strong> ${materialsString}</p>`;
         }
+        if (item.health) detailsHTML += `<p><strong>Health:</strong> ${item.health}</p>`;
+        if (item.inventory_slot_capacity) detailsHTML += `<p><strong>Slot Capacity:</strong> ${item.inventory_slot_capacity}</p>`;
         detailsDiv.innerHTML = detailsHTML;
     } else {
         detailsDiv.innerHTML = '<p>Select an item to see details.</p>';
     }
 }
 
-/**
- * Filters the component list based on the search term.
- * Hides/shows categories based on whether they contain matching items.
- * @param {string} searchTerm The term to filter by.
- */
+// NEW: Enhanced search with case-insensitive and partial matching
 function filterComponentList(searchTerm) {
-    if (!componentListDiv) return;
+    const componentListDiv = document.getElementById('component-list');
+    const lowerSearchTerm = searchTerm.toLowerCase().trim();
     const categoryDivs = componentListDiv.querySelectorAll('.component-category');
+    
     categoryDivs.forEach(div => {
         const options = div.querySelectorAll('.category-dropdown option');
         let categoryHasMatch = false;
-        if (searchTerm === '') {
-            categoryHasMatch = true; // Show all if search is empty
-        } else {
-            options.forEach(option => {
-                // Use pre-stored dataset.itemName for search if available, otherwise textContent
-                const itemName = option.dataset.itemName || option.textContent.toLowerCase();
-                if (itemName.includes(searchTerm)) {
-                    categoryHasMatch = true;
-                }
-            });
-        }
+        
+        options.forEach(option => {
+            const itemName = option.dataset.itemName || option.textContent.toLowerCase();
+            if (itemName.includes(lowerSearchTerm)) {
+                categoryHasMatch = true;
+            }
+        });
         div.style.display = categoryHasMatch ? '' : 'none';
     });
 }
 
 // --- Build Management ---
-/**
- * Adds an item to the current build or increments its quantity if already present.
- * @param {object} itemData The data of the item to add (should be a clone).
- */
 function handleAddItem(itemData) {
     const existingItem = currentBuild.find(buildItem => buildItem.item.id === itemData.id);
+    let itemNetPower = 0;
+    if (itemData.power_consumption_w != null) {
+        itemNetPower -= Number(itemData.power_consumption_w);
+    }
+    if (itemData.output_production) {
+        itemData.output_production.forEach(op => {
+            if (op.item_id === "power" && op.quantity != null) {
+                itemNetPower += Number(op.quantity);
+            }
+        });
+    }
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
-        // Calculate net power for this specific item type once
-        let itemNetPower = 0;
-        if (itemData.power_consumption_w != null) { // Check for null or undefined
-            itemNetPower -= Number(itemData.power_consumption_w);
-        }
-        if (itemData.output_production) {
-            itemData.output_production.forEach(op => {
-                if (op.item_id === "power" && op.quantity != null) { // Ensure quantity is valid
-                    itemNetPower += Number(op.quantity);
-                }
-            });
-        }
         currentBuild.push({
             item: itemData,
             quantity: 1,
-            net_power_per_item: itemNetPower // Store pre-calculated net power per unit
+            net_power_per_item: itemNetPower
         });
     }
     updateCurrentBuildPanel();
     calculateAndDisplayTotals();
 }
 
-/**
- * Updates the display of the current build panel.
- */
 function updateCurrentBuildPanel() {
+    const selectedItemsListDiv = document.getElementById('selected-items-list');
     if (!selectedItemsListDiv) return;
-    selectedItemsListDiv.innerHTML = ''; // Clear previous content
+    selectedItemsListDiv.innerHTML = '';
 
     if (currentBuild.length === 0) {
         selectedItemsListDiv.innerHTML = '<p class="empty-build-message">Your build is currently empty. Add components from the left panel.</p>';
@@ -278,7 +263,6 @@ function updateCurrentBuildPanel() {
         }
         itemDiv.appendChild(detailsDiv);
 
-        // Quantity Controls
         const quantityControls = document.createElement('div');
         quantityControls.className = 'quantity-controls';
         const decreaseBtn = document.createElement('button');
@@ -300,17 +284,12 @@ function updateCurrentBuildPanel() {
     });
 }
 
-/**
- * Changes the quantity of an item in the build, or removes it if quantity reaches zero or less.
- * @param {string} itemId The ID of the item to change.
- * @param {number} change The amount to change the quantity by (e.g., 1 or -1).
- */
 function handleChangeQuantity(itemId, change) {
     const buildItemIndex = currentBuild.findIndex(bi => bi.item.id === itemId);
     if (buildItemIndex > -1) {
         currentBuild[buildItemIndex].quantity += change;
         if (currentBuild[buildItemIndex].quantity <= 0) {
-            currentBuild.splice(buildItemIndex, 1); // Remove item from array
+            currentBuild.splice(buildItemIndex, 1);
         }
         updateCurrentBuildPanel();
         calculateAndDisplayTotals();
@@ -318,27 +297,20 @@ function handleChangeQuantity(itemId, change) {
 }
 
 // --- Totals Calculation and Display ---
-/**
- * Calculates total materials, power, and discounted costs, then updates the totals panel.
- */
 function calculateAndDisplayTotals() {
     const totalMaterials = {};
     let totalPowerGenerated = 0;
     let totalPowerConsumed = 0;
 
     currentBuild.forEach(buildItem => {
-        const { item, quantity, net_power_per_item } = buildItem; // Use pre-calculated net_power_per_item
+        const { item, quantity } = buildItem;
 
-        // Aggregate crafting materials
         if (item.crafting_materials) {
             item.crafting_materials.forEach(material => {
                 totalMaterials[material.item_id] = (totalMaterials[material.item_id] || 0) + (material.quantity * quantity);
             });
         }
 
-        // Aggregate power based on pre-calculated net_power_per_item
-        // This simplifies logic here as power generation/consumption is already factored per unit
-        // For total generated/consumed breakdown, we still need original data:
         if (item.output_production) {
             item.output_production.forEach(op => {
                 if (op.item_id === "power" && op.quantity != null) {
@@ -352,8 +324,6 @@ function calculateAndDisplayTotals() {
     });
 
     const totalNetPower = totalPowerGenerated - totalPowerConsumed;
-
-    // Calculate discounted materials
     const discountedTotalMaterials = {};
     for (const material in totalMaterials) {
         discountedTotalMaterials[material] = Math.ceil(totalMaterials[material] / 2);
@@ -362,44 +332,131 @@ function calculateAndDisplayTotals() {
     updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerGenerated, totalPowerConsumed, totalNetPower);
 }
 
-/**
- * Updates the totals panel display with calculated values.
- * @param {object} totalMaterials Original total materials.
- * @param {object} discountedTotalMaterials Discounted total materials.
- * @param {number} totalPowerGenerated Total power generated.
- * @param {number} totalPowerConsumed Total power consumed.
- * @param {number} totalNetPower Net power.
- */
+// NEW: Enhanced to include summary section
 function updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerGenerated, totalPowerConsumed, totalNetPower) {
-    // All DOM elements used here are already cached and checked in DOMContentLoaded
+    const materialsSummaryListDiv = document.getElementById('materials-summary-list');
+    const materialsSummaryDiscountedListDiv = document.getElementById('materials-summary-discounted-list');
+    const totalPowerGeneratedSpan = document.getElementById('total-power-generated');
+    const totalPowerConsumedSpan = document.getElementById('total-power-consumed');
+    const netPowerSpan = document.getElementById('net-power');
+    const powerWarningDiv = document.getElementById('power-warning');
+    const totalsPanel = document.getElementById('total-materials-panel');
 
-    // Display original materials
+    // NEW: Add summary section
+    let summaryDiv = totalsPanel.querySelector('.summary');
+    if (!summaryDiv) {
+        summaryDiv = document.createElement('div');
+        summaryDiv.className = 'summary';
+        totalsPanel.insertBefore(summaryDiv, totalsPanel.querySelector('.totals-container'));
+    }
+    const { netWater } = calculateWaterTotals(currentBuild);
+    summaryDiv.innerHTML = `
+        <p><strong>Total Materials:</strong> ${Object.keys(totalMaterials).length}</p>
+        <p><strong>Net Power:</strong> ${totalNetPower} W</p>
+        <p><strong>Net Water:</strong> ${netWater} ml/hour</p>
+    `;
+
     materialsSummaryListDiv.innerHTML = Object.keys(totalMaterials).length === 0
         ? '<ul><li class="empty-totals-message">No materials required yet.</li></ul>'
         : '<ul>' + Object.entries(totalMaterials).map(([name, qty]) => `<li>${name.replace(/_/g, ' ')}: ${qty}</li>`).join('') + '</ul>';
 
-    // Display discounted materials
     materialsSummaryDiscountedListDiv.innerHTML = Object.keys(discountedTotalMaterials).length === 0
         ? '<ul><li class="empty-totals-message">No materials to discount.</li></ul>'
         : '<ul>' + Object.entries(discountedTotalMaterials).map(([name, qty]) => `<li>${name.replace(/_/g, ' ')}: ${qty}</li>`).join('') + '</ul>';
 
-    // Display power statistics
     totalPowerGeneratedSpan.textContent = totalPowerGenerated;
     totalPowerConsumedSpan.textContent = totalPowerConsumed;
     netPowerSpan.textContent = totalNetPower;
 
-    // Update net power styling using CSS classes
     netPowerSpan.classList.remove('power-positive', 'power-negative', 'power-neutral');
     if (totalNetPower > 0) {
         netPowerSpan.classList.add('power-positive');
     } else if (totalNetPower < 0) {
         netPowerSpan.classList.add('power-negative');
-    } else { // When totalNetPower is 0 or any other case (e.g. NaN, though unlikely here)
+    } else {
         netPowerSpan.classList.add('power-neutral');
     }
 
-    // Display power warning message
     powerWarningDiv.innerHTML = totalNetPower < 0
         ? '<p class="warning-message">Warning: Insufficient power! Your build consumes more power than it generates.</p>'
         : '';
+}
+
+// --- Water Calculator ---
+function calculateWaterTotals(buildItems) {
+    let totalWaterProduced = 0;
+    let totalWaterConsumed = 0;
+    
+    buildItems.forEach(({ item, quantity }) => {
+        if (item.water_production) {
+            totalWaterProduced += item.water_production.quantity * quantity;
+        }
+        if (item.water_consumption) {
+            totalWaterConsumed += item.water_consumption.quantity * quantity;
+        }
+    });
+    
+    const netWater = totalWaterProduced - totalWaterConsumed;
+    return { totalWaterProduced, totalWaterConsumed, netWater };
+}
+
+function updateWaterCalculator(buildItems) {
+    const { totalWaterProduced, totalWaterConsumed, netWater } = calculateWaterTotals(buildItems);
+    const waterTotalsDiv = document.getElementById('water-totals');
+    waterTotalsDiv.innerHTML = `
+        <p>Total Water Produced: ${totalWaterProduced} ml/hour</p>
+        <p>Total Water Consumed: ${totalWaterConsumed} ml/hour</p>
+        <p class="${netWater >= 0 ? 'net-positive' : 'net-negative'}">
+            Net Water: ${netWater} ml/hour
+        </p>
+    `;
+}
+
+// --- Build Report ---
+function generateBuildReport() {
+    const totalMaterials = calculateTotalMaterials(currentBuild);
+    const { totalPowerGenerated, totalPowerConsumed, totalNetPower } = calculatePowerTotals(currentBuild);
+    const { totalWaterProduced, totalWaterConsumed, netWater } = calculateWaterTotals(currentBuild);
+    
+    return `
+        Build Summary:
+        Total Materials: ${Object.keys(totalMaterials).length}
+        Net Power: ${totalNetPower} W
+        Net Water: ${netWater} ml/hour
+        Materials:
+        ${Object.entries(totalMaterials).map(([m, q]) => `${m}: ${q}`).join('\n')}
+    `;
+}
+
+function calculateTotalMaterials(buildItems) {
+    const totalMaterials = {};
+    buildItems.forEach(({ item, quantity }) => {
+        if (item.crafting_materials) {
+            item.crafting_materials.forEach(material => {
+                totalMaterials[material.item_id] = (totalMaterials[material.item_id] || 0) + (material.quantity * quantity);
+            });
+        }
+    });
+    return totalMaterials;
+}
+
+function calculatePowerTotals(buildItems) {
+    let totalPowerGenerated = 0;
+    let totalPowerConsumed = 0;
+    
+    buildItems.forEach(({ item, quantity }) => {
+        if (item.output_production) {
+            item.output_production.forEach(op => {
+                if (op.item_id === "power") {
+                    totalPowerGenerated += op.quantity * quantity;
+                }
+            });
+        }
+        if (item.power_consumption_w) {
+            totalPowerConsumed += item.power_consumption_w * quantity;
+        }
+    });
+    
+    const totalNetPower = totalPowerGenerated - totalPowerConsumed;
+    return { totalPowerGenerated, totalPowerConsumed, totalNetPower };
 }

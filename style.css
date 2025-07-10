@@ -2,22 +2,22 @@
 
 /* Basic Reset & Variables */
 :root {
-    --dune-bg-dark: #1C1713; /* Very dark, desaturated brown */
-    --dune-panel-bg: #2E2620; /* Darker, desaturated brown/sand */
-    --dune-panel-bg-lighter: #3C342E; /* Slightly lighter for hover or details */
-    --dune-panel-border: #504038; /* Muted brown for borders */
-    --dune-text-primary: #E0D8CC; /* Off-white, light sand */
-    --dune-text-secondary: #B0A090; /* Muted sand/gray */
-    --dune-accent-spice: #D46A2D; /* Spice orange/rust */
-    --dune-accent-spice-darker: #B8561F; /* Darker spice for hover */
-    --dune-accent-metal: #8C7864; /* Muted bronze/copper */
-    --dune-accent-fremen-blue: #4A8ABF; /* Muted blue for some accents like buttons */
-    --dune-accent-fremen-blue-darker: #3A6A9F; /* Darker blue for hover */
-    --dune-danger-text: #FF776B; /* For warnings/errors */
-    --dune-danger-bg: #4A2A26; /* Background for error messages */
+    --dune-bg-dark: #1C1713;
+    --dune-panel-bg: #2E2620;
+    --dune-panel-bg-lighter: #3C342E;
+    --dune-panel-border: #504038;
+    --dune-text-primary: #E0D8CC;
+    --dune-text-secondary: #B0A090;
+    --dune-accent-spice: #D46A2D;
+    --dune-accent-spice-darker: #B8561F;
+    --dune-accent-metal: #8C7864;
+    --dune-accent-fremen-blue: #4A8ABF;
+    --dune-accent-fremen-blue-darker: #3A6A9F;
+    --dune-danger-text: #FF776B;
+    --dune-danger-bg: #4A2A26;
 
     --font-body: 'Arial Narrow', Arial, sans-serif;
-    --font-heading: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* More dramatic headings */
+    --font-heading: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 body, h1, h2, h3, p, ul, li, div, button, header, main, section, footer, input, select {
@@ -36,9 +36,9 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 30px; /* Increased margin */
+    margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 3px solid var(--dune-panel-border); /* Thicker, thematic border */
+    border-bottom: 3px solid var(--dune-panel-border);
 }
 
 header h1 {
@@ -46,61 +46,61 @@ header h1 {
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--dune-accent-spice);
-    font-size: 2.8em; /* Larger */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for depth */
+    font-size: 2.8em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 /* Informational note at the top */
 .info-note {
     text-align: center;
     font-style: italic;
-    margin: 15px auto 25px auto; /* Centered with auto margins */
+    margin: 15px auto 25px auto;
     color: var(--dune-text-secondary);
     font-size: 0.9em;
-    max-width: 800px; /* Limit width */
+    max-width: 800px;
     border: 1px dashed var(--dune-panel-border);
     padding: 10px;
     background-color: var(--dune-panel-bg);
-    border-radius: 0px; /* Sharper edges */
+    border-radius: 0px;
 }
 
 /* Calculator Layout */
 .calculator-layout {
     display: flex;
-    gap: 25px; /* Increased space */
+    gap: 25px;
     flex-wrap: wrap;
 }
 
 .panel {
     background-color: var(--dune-panel-bg);
-    padding: 20px; /* Increased padding */
+    padding: 20px;
     border: 2px solid var(--dune-panel-border);
-    border-radius: 2px; /* Sharper edges */
+    border-radius: 2px;
     box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 }
 
 #item-selection-panel {
     flex: 1;
     min-width: 320px;
-    order: 1; /* Left */
+    order: 1;
 }
 
 #current-build-panel {
     flex: 1.5;
     min-width: 380px;
-    order: 2; /* Center */
+    order: 2;
 }
 
 #total-materials-panel {
     flex: 1;
     min-width: 320px;
-    order: 3; /* Right */
+    order: 3;
 }
 
 .panel h2 {
     font-family: var(--font-heading);
     letter-spacing: 0.5px;
-    font-size: 1.8em; /* Larger panel titles */
+    font-size: 1.8em;
     color: var(--dune-accent-spice);
     margin-bottom: 20px;
     padding-bottom: 10px;
@@ -112,7 +112,7 @@ header h1 {
     font-family: var(--font-heading);
     letter-spacing: 0.5px;
     font-size: 1.3em;
-    color: var(--dune-accent-metal); /* Metal accent for sub-headers */
+    color: var(--dune-accent-metal);
     margin-bottom: 12px;
     text-transform: uppercase;
 }
@@ -122,28 +122,28 @@ header h1 {
     margin-bottom: 20px;
     border: 1px solid var(--dune-panel-border);
     padding: 10px;
-    background-color: var(--dune-bg-dark); /* Slightly darker inset */
+    background-color: var(--dune-bg-dark);
 }
 
 .component-category h3 {
-    font-family: var(--font-body); /* Use body font for these sub-sub-headers for clarity */
+    font-family: var(--font-body);
     font-weight: bold;
     font-size: 1.1em;
     color: var(--dune-text-primary);
     margin-bottom: 10px;
     border-bottom: 1px solid var(--dune-panel-border);
     padding-bottom: 6px;
-    text-transform: none; /* No uppercase for these */
+    text-transform: none;
 }
 
 #item-search,
 .category-dropdown {
     width: 100%;
-    padding: 10px; /* Increased padding */
+    padding: 10px;
     margin-bottom: 12px;
     border: 1px solid var(--dune-panel-border);
-    border-radius: 0px; /* Sharper edges */
-    background-color: var(--dune-bg-dark); /* Darker input fields */
+    border-radius: 0px;
+    background-color: var(--dune-bg-dark);
     color: var(--dune-text-primary);
     font-size: 1em;
 }
@@ -153,7 +153,7 @@ header h1 {
 }
 
 .item-details {
-    background-color: var(--dune-panel-bg-lighter); /* Lighter detail box */
+    background-color: var(--dune-panel-bg-lighter);
     padding: 12px;
     margin-top: 8px;
     border-radius: 0px;
@@ -186,26 +186,25 @@ header h1 {
     flex-grow: 1;
 }
 
-#selected-items-list .selected-item p { /* General text within selected item */
+#selected-items-list .selected-item p {
     margin-bottom: 5px;
     line-height: 1.4;
 }
 
-#selected-items-list .selected-item p:first-child { /* Name of the item */
+#selected-items-list .selected-item p:first-child {
     font-weight: bold;
     color: var(--dune-accent-spice);
     font-size: 1.1em;
 }
-
 
 #selected-items-list .item-crafting-materials,
 #selected-items-list .item-power,
 #selected-items-list .item-operational-notes {
     font-size: 0.85em;
     color: var(--dune-text-secondary);
-    margin-left: 0; /* Remove fixed margin */
-    padding-left: 10px; /* Indent with padding */
-    border-left: 2px solid var(--dune-accent-metal); /* Accent line */
+    margin-left: 0;
+    padding-left: 10px;
+    border-left: 2px solid var(--dune-accent-metal);
 }
 #selected-items-list .item-operational-notes {
     font-style: italic;
@@ -217,10 +216,12 @@ header h1 {
     color: var(--dune-text-primary);
 }
 
-
 /* Buttons */
 .add-item-btn,
-.quantity-controls button {
+.quantity-controls button,
+#open-water-calculator, /* NEW: Style applied to water calculator button */
+#close-water-calculator, /* NEW: Style applied to modal close button */
+#export-build /* NEW: Style applied to export button */ {
     background-color: var(--dune-accent-fremen-blue);
     color: var(--dune-text-primary);
     border: 1px solid var(--dune-accent-fremen-blue-darker);
@@ -230,7 +231,7 @@ header h1 {
     display: inline-block;
     font-size: 0.95em;
     font-weight: bold;
-    border-radius: 0px; /* Sharper */
+    border-radius: 0px;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
     margin-top: 5px;
@@ -238,16 +239,13 @@ header h1 {
 }
 
 .add-item-btn:hover,
-.quantity-controls button:hover {
+.quantity-controls button:hover,
+#open-water-calculator:hover,
+#close-water-calculator:hover,
+#export-build:hover {
     background-color: var(--dune-accent-fremen-blue-darker);
     border-color: var(--dune-accent-fremen-blue);
 }
-
-/* Remove button specific styling - deprecated, using quantity controls */
-.remove-item-btn {
-    display: none; /* Assuming quantity controls handle removal */
-}
-
 
 .empty-build-message, .empty-totals-message {
     color: var(--dune-text-secondary);
@@ -283,7 +281,7 @@ header h1 {
 #materials-summary-list li,
 #materials-summary-discounted-list li {
     padding: 6px 0;
-    border-bottom: 1px solid var(--dune-panel-border); /* Solid, thematic border */
+    border-bottom: 1px solid var(--dune-panel-border);
     font-size: 0.95em;
     color: var(--dune-text-secondary);
 }
@@ -291,23 +289,22 @@ header h1 {
 #materials-summary-discounted-list li:last-child {
     border-bottom: none;
 }
-#materials-summary-list li strong, /* If material names are wrapped in strong */
+#materials-summary-list li strong,
 #materials-summary-discounted-list li strong {
     color: var(--dune-text-primary);
 }
-
 
 #power-summary {
     margin-top: 25px;
     padding-top: 20px;
     border-top: 2px solid var(--dune-panel-border);
 }
-#power-summary h3 { /* Already styled by .panel h3 */
+#power-summary h3 {
     margin-bottom: 8px;
 }
 
 #power-summary p {
-    font-size: 1em; /* Slightly larger for readability */
+    font-size: 1em;
     color: var(--dune-text-primary);
     margin-bottom: 5px;
 }
@@ -316,20 +313,19 @@ header h1 {
     font-size: 1.1em;
 }
 .power-positive {
-    color: #73d487; /* Light green for positive power */
+    color: #73d487;
 }
 .power-negative {
-    color: var(--dune-danger-text); /* Use existing danger color for negative power */
+    color: var(--dune-danger-text);
 }
 .power-neutral {
-    color: var(--dune-text-primary); /* Default text color for neutral power */
+    color: var(--dune-text-primary);
 }
-/* Net power color is handled by JS, but default can be set if needed */
 
 /* Footer */
 footer {
     text-align: center;
-    margin-top: 40px; /* More space */
+    margin-top: 40px;
     padding-top: 20px;
     border-top: 3px solid var(--dune-panel-border);
     font-size: 0.9em;
@@ -339,7 +335,7 @@ footer {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     body {
-        padding: 10px; /* Less padding on small screens */
+        padding: 10px;
     }
     header h1 {
         font-size: 2em;
@@ -367,7 +363,7 @@ footer {
         min-width: 100%;
     }
     #item-search, .category-dropdown, .add-item-btn, .quantity-controls button {
-        padding: 10px; /* Consistent padding */
+        padding: 10px;
         font-size: 1em;
     }
 }
@@ -382,38 +378,29 @@ footer {
     border-radius: 0px;
     margin-top: 10px;
 }
-.warning-message { /* Specifically for power warning, if it needs different styling */
+.warning-message {
     margin-top: 15px;
     text-align: center;
 }
-
-
-/* Search Input - already covered by general input styling */
 
 /* Quantity Controls */
 .quantity-controls {
     display: flex;
     align-items: center;
-    margin-left: 10px; /* Keep some space from item details */
+    margin-left: 10px;
 }
-.quantity-controls button { /* Styling already defined under .add-item-btn */
-    padding: 6px 10px; /* Slightly smaller for these controls */
-    font-size: 1em; /* Larger font for +/- */
+.quantity-controls button {
+    padding: 6px 10px;
+    font-size: 1em;
     margin: 0 5px;
 }
 .quantity-controls span {
-    min-width: 25px; /* Wider for quantity */
+    min-width: 25px;
     text-align: center;
     font-size: 1em;
     color: var(--dune-text-primary);
     font-weight: bold;
 }
-
-/* Unused classes from original CSS - can be removed if confirmed not used by JS */
-/* #selected-items-list .item-name-display - replaced by styling p:first-child */
-/* #selected-items-list .item-detail-small - replaced by general p styling and specific classes */
-/* #selected-items-list .item-notes-display - replaced by .item-operational-notes */
-/* .remove-item-btn - hidden as quantity controls are primary */
 
 /* Accessibility Helper Class */
 .visually-hidden {
@@ -428,9 +415,55 @@ footer {
     border: 0;
 }
 
-/* Style for #power-summary (moved from inline) */
-#power-summary {
-    margin-top: 25px; /* Kept consistent with surrounding spacing from previous CSS version */
-    padding-top: 20px;
-    border-top: 2px solid var(--dune-panel-border);
+/* NEW: Water Calculator Modal Styles */
+#water-calculator-modal {
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    background: #1a1a1a; /* Dark background for contrast */
+    padding: 20px;
+    border: 1px solid #ccc; /* Light border for visibility */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+#water-calculator-modal h3 {
+    margin-bottom: 10px;
+    color: var(--dune-accent-spice); /* Consistent with theme */
+}
+
+#water-totals p {
+    margin: 5px 0;
+    color: var(--dune-text-primary);
+}
+
+.net-positive {
+    color: #73d487; /* Green for positive values */
+}
+
+.net-negative {
+    color: #ff776b; /* Red for negative values, matches danger text */
+}
+
+/* NEW: Summary Section Styles */
+.summary {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #2a2a2a; /* Slightly lighter dark background */
+    border: 1px solid #ccc; /* Light border for definition */
+}
+
+.summary p {
+    margin: 5px 0;
+    color: var(--dune-text-primary);
+}
+
+.summary p strong {
+    color: var(--dune-accent-metal); /* Consistent accent color */
+}
+
+/* NEW: Export Button Specific Styles */
+#export-build {
+    /* Inherits from general button styles above */
+    margin-left: 10px; /* Spacing from water calculator button */
 }

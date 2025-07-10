@@ -1,0 +1,129 @@
+Refineries:
+Blood Purifier
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 15, 5, 200., (Salvage 90), Construction Tool
+Improved Blood Purifier
+Small Ore Refinery
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 15, 5, 200., (Salvage 90), Construction Tool
+Medium Ore Refinery
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 45, 5, 500., (Steel 125, CobaltP 60, ComplexM 50), Construction Tool
+Large Ore Refinery
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+4000, 350, 5, 1000, (PLas 380, Sil 540, SpiceM 400, ComplexM 200, CobaltP 745, AdvancedM 40), Construction Tool
+Small Chemical Factory
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 15, 5, 200, (Copper 45), Construction Tool
+Medium Chemical Factory
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 350, 5, 200, (Duraluminum 200, Sil 90, ComplexM 50, SpiceM 35), Construction Tool
+Spice Refinery
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 200, 5, 200, (Dura 160, Sil 130, CobaltP 80, ComplexM 70), Construction Tool
+Medium Spice Refinery
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 350, 5, 500, (Plas 285, Sil 225, SpiceM 135, ComplexM 100, CobaltP 190), Construction Tool
+Large Spice Refinery
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+20000, 500, 5, 1000, (Plas 950, Sil 1080, ComplexM 350, SPiceM 1000, CobaltP 1110, AdvanceM 55), Construction Tool
+Fremen Death Still
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Water Processing Time, Water Yield
+1250, 200, NA, NA, (Steel 60, Sil 28, ComplexM 32), Construction Tool, 1h:00:00, 25000
+Advanced Fremen Deathstill
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Water Processing Time, Water Yield
+2500, 350, NA, NA, (Dura 240, Sil 170, ComplexM 70), Construction Tool, 00:50:00, 45000
+
+Fabricators:
+Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+1250, 10, 10, 200, salvaged metal 75, Construction Tool, Iron Products
+Garment Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+1250, 40, 10, 200, Steel Ingots 40 Complex Machinery 30, Construction tool, Daraluminum Products
+Advanced Garment Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+2500, 150, 10, 200, (Plas 140, sil 180, complexM 100, spicem 45, CobaltP 150, ThermoC 30), Construction Tool, Plastinium Products
+Survival Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+1250, 40, 10,200, (steel 40, complexM 30), Construction Tool, Daraluminum Products
+Advanced Survival Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+2500, 150, 10, 200, (Plas 140, Sil 180, ComplexM 100, SpiceM 45, CobaltP 150, Thermoc 30), Construction Tool, Plastinium Products   
+Weapons Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+1250, 40, 10, 200, Steel Ingots 40 Complex Machinery 30, Construction tool, Daraluminum Products
+Advanced Weapons Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+2500, 150, 10, 200, (Plas 140, Sil 180, ComplexM 100, SpiceM 45, CobaltP 150, Militar 40), Construction Tool, Plastinium Products
+Vehicles Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+1250, 40, 10, 200, Steel Ingots 40 Complex Machinery 30, Construction tool, Daraluminum Products
+Advanced Vehicles Fabricator
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Fabricates upto
+2500, 150, 10, 200, (Plas 140, Sil 180, ComplexM 100, SpiceM 45, CobaltP 150, Indust 50), Construction Tool, Plastinium Products
+
+Utilities:
+Sub-Fife Console
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 15, 5, 50, (Salvage 25), Construction Tool
+Advanced Sub-Fife Console
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 15, 5, 50, (Salvage 40), Construction Tool
+Fuel-Powered Geneerator
+Health, Power Generated, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 75, 5, 100, (Salvage 45), Construction Tool
+Wind Turbine Omni-Directional
+Health, Power Generated, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 150, 5, 100, (Steel 45, CobaltP 65, Calib 20), Construction Tool
+Wind Turbine Directional
+Health, Power Generated, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With2
+3500, 350, 5, 100, (Dura 120, CobaltP 160, Calib 50, SpiceM 3), Consstruction Tool
+Spice Powered Generator
+Health, Power Generated, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+4000, 1000, 5, 100, (Plas 430, Sil 180, SpiceM 270, ComplexM 100, CobaltP 300, ADvanceM 40), Construction Tool
+Repair Station
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 20, 5, 200, (Iron 40), Construction Tool
+Recycler
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 15, 20, 100, (Copper 30), Construction Tool
+Windtrap
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Water Capacity, Water Gather Rate
+3500, 75, 5, 25, (Steel 90, Sil 30, Calib 30), Construction Tool, 500, 0.75
+Large Windtrap
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With, Water Capacity, Water Gather Rate
+3500, 135, 5, 25,( Dura 240, Sil 250, Calib 70, SpiceM 5), Construction Tool, 500, 1.75
+Pentashield Surface Vertical
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 3, NA, NA, (Steel 2, CobaltP 20, Calib 6), Construction Tool
+Pentashield Surface Horizontal
+Health, Power Cost, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 3, NA, NA, (Steel 2, CobaltP 20, Calib 6), Construction Tool
+
+
+
+Storage:
+Small Storage Container
+Health, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 10, 250, (Salvage 35), COnstruction Tool
+Chest
+Health, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+1250, 20, 750, (Iron 20), Construction Tool
+Storage Container
+Health, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+2500, 45, 1750, (Aluminum 45, Sil 8), Construction Tool
+Medium Storage Container
+Health, Inventory Slot Capacity, Inventory Volume Capacity, Components, Placed With
+4000, 100, 3500, (Plas 70, Sil 14, SpiceM 4), Construction Tool
+Water Cistern
+Health, Water Capacity, Components, PLaced With
+1250, 5000, (Copper 25), Construction Tool
+Medium Water Cistern
+Health, Water Capacity, Components, Placed With
+2500, 25000, (Steel 60, Sil 30), Construction Tool
+Large Water Cistern
+Health, Water Capacity, Components, Placed With
+2500, 100000, (Dura 150, Sil 160, Indust 25), Construction Tool
+
+Plas = Plastinium, Sil = Silicon Blocks, ComplexM = Complex Machinery, SpiceM = Spice Melange, CobaltP = Cobalt Paste, Thermoc = Thermoelectric Cooler, Military = Military Power Regulator, Indust = Industrial Pump, Dura = Duraluminum, Steel = Steel Ingots, Salvage = Salvaged Metal, Calib = Calibration Servoks, AdvancedM = Advanced Machinery, SpiceM = Spice Melange, SPiceM = Spice Melange, CobaltP = Cobalt Paste
