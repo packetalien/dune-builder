@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Informational note about the tool's accuracy and discounts -->
+    <!-- Informational note about tool accuracy and Deep Desert discounts -->
     <p class="info-note">This tool attempts to be as accurate as possible. The Deep Desert discounts change. You "should" get all resources back. It "should be" 50% off rounded up.</p>
     <header>
         <h1>Dune: Awakening - Base Build Calculator</h1>
@@ -26,12 +26,12 @@
             <h2>Current Build</h2>
             <div id="selected-items-list"></div>
         </section>
-        <!-- Panel for showing totals, now with water calculator and export buttons -->
+        <!-- Panel for totals, with buttons for water calculator and export -->
         <section id="total-materials-panel" class="panel">
             <h2>Totals</h2>
-            <!-- NEW: Button to open the water calculator modal -->
+            <!-- Button to open water calculator modal -->
             <button id="open-water-calculator">Water Calculator</button>
-            <!-- NEW: Button to export the build report -->
+            <!-- Button to export build report as text file -->
             <button id="export-build">Export Build</button>
             <div class="totals-container">
                 <div id="original-costs-container">
@@ -52,17 +52,18 @@
             </div>
         </section>
     </main>
+    <!-- Footer with dynamic year -->
     <footer>
         <p>© <span id="current-year"></span> Dune: Awakening Base Build Calculator. Fan-made tool.</p>
     </footer>
-    <!-- NEW: Water calculator modal, hidden by default -->
-    <div id="water-calculator-modal" style="display: none;">
-        <h3>Water Calculator</h3>
+    <!-- Water calculator modal, hidden by default -->
+    <div id="water-calculator-modal" style="display: none;" role="dialog" aria-labelledby="water-calculator-title">
+        <h3 id="water-calculator-title">Water Calculator</h3>
         <div id="water-totals"></div>
         <button id="close-water-calculator">Close</button>
     </div>
     <script src="app.js"></script>
-    <!-- Inline script to set the current year in the footer -->
+    <!-- Inline script to set current year -->
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

@@ -1,13 +1,15 @@
 // Dune: Awakening Base Build Calculator
-// Main JavaScript file for handling UI interactions and calculations
+// Main JavaScript file for handling UI interactions, material calculations, power, and water
 
-let buildingData = null; // Stores the loaded building component data
-let currentBuild = []; // Tracks the user's current build items
+// Global variables to store data and current build
+let buildingData = null; // Stores loaded JSON data
+let currentBuild = []; // Tracks selected items, quantities, and net power
 
+// Cache DOM elements on initialization
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Calculator Initializing...");
 
-    // Cache DOM elements for efficiency
+    // Cache critical DOM elements
     const componentListDiv = document.getElementById('component-list');
     const selectedItemsListDiv = document.getElementById('selected-items-list');
     const materialsSummaryListDiv = document.getElementById('materials-summary-list');
@@ -17,32 +19,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalPowerConsumedSpan = document.getElementById('total-power-consumed');
     const powerWarningDiv = document.getElementById('power-warning');
 
-    // Check for critical DOM elements
+    // Validate DOM elements
     if (!componentListDiv || !selectedItemsListDiv || !materialsSummaryListDiv ||
         !materialsSummaryDiscountedListDiv || !netPowerSpan || !totalPowerGeneratedSpan ||
         !totalPowerConsumedSpan || !powerWarningDiv) {
-        console.error("Critical DOM elements not found! Check your HTML IDs. Initialization halted.");
+        console.error("Critical DOM elements not found! Check HTML IDs.");
         document.body.innerHTML = '<p class="error-message" style="padding: 20px; text-align: center;">Critical error: UI components missing. Cannot start calculator.</p>';
         return;
     }
 
+    // Load building data
     await loadBuildingData();
     updateCurrentBuildPanel();
     updateTotalsPanel({}, {}, 0, 0, 0);
 
-    // NEW: Enhanced search with debounce for performance
+    // Search functionality with debounce
     const itemSearchInput = document.getElementById('item-search');
     if (itemSearchInput) {
         let searchTimeout;
         itemSearchInput.addEventListener('input', function() {
             clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => filterComponentList(this.value), 300); // 300ms debounce
+            searchTimeout = setTimeout(() => filterComponentList(this.value), 300);
         });
     } else {
-        console.warn("'item-search' input not found. Search functionality will be unavailable.");
+        console.warn("'item-search' input not found. Search unavailable.");
     }
 
-    // NEW: Event listeners for water calculator modal
+    // Event listeners for water calculator modal
     document.getElementById('open-water-calculator').addEventListener('click', () => {
         document.getElementById('water-calculator-modal').style.display = 'block';
         updateWaterCalculator(currentBuild);
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('water-calculator-modal').style.display = 'none';
     });
 
-    // NEW: Event listener for exporting build report
+    // Event listener for export build report
     document.getElementById('export-build').addEventListener('click', () => {
         const report = generateBuildReport();
         const blob = new Blob([report], { type: 'text/plain' });
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 });
 
-// --- Data Loading ---
+// Load building data from data.json
 async function loadBuildingData() {
     try {
         const response = await fetch('data.json');
@@ -81,11 +84,11 @@ async function loadBuildingData() {
     }
 }
 
-// --- UI Population and Filtering ---
+// Populate item selection panel with categorized dropdowns
 function populateItemSelectionPanel() {
     const componentListDiv = document.getElementById('component-list');
     if (!buildingData || !componentListDiv) {
-        console.error("Cannot populate item selection: data or component list div is missing.");
+        console.error("Cannot populate item selection: data or component list div missing.");
         return;
     }
     componentListDiv.innerHTML = '';
@@ -98,6 +101,7 @@ function populateItemSelectionPanel() {
         return acc;
     }, {});
 
+    // Create dropdowns for each type
     Object.keys(itemsByType).sort().forEach(type => {
         const categoryDiv = document.createElement('div');
         categoryDiv.className = 'component-category';
@@ -143,6 +147,7 @@ function populateItemSelectionPanel() {
     });
 }
 
+// Display details for selected item
 function displayItemDetails(dropdown, detailsDiv) {
     const selectedId = dropdown.value;
     const item = buildingData.find(i => i.id === selectedId);
@@ -156,22 +161,22 @@ function displayItemDetails(dropdown, detailsDiv) {
         }
         if (item.health) detailsHTML += `<p><strong>Health:</strong> ${item.health}</p>`;
         if (item.inventory_slot_capacity) detailsHTML += `<p><strong>Slot Capacity:</strong> ${item.inventory_slot_capacity}</p>`;
+        if (item.water_capacity) detailsHTML += `<p><strong>Water Capacity:</strong> ${item.water_capacity} ml</p>`;
         detailsDiv.innerHTML = detailsHTML;
     } else {
         detailsDiv.innerHTML = '<p>Select an item to see details.</p>';
     }
 }
 
-// NEW: Enhanced search with case-insensitive and partial matching
+// Filter component list based on search term
 function filterComponentList(searchTerm) {
     const componentListDiv = document.getElementById('component-list');
     const lowerSearchTerm = searchTerm.toLowerCase().trim();
     const categoryDivs = componentListDiv.querySelectorAll('.component-category');
-    
+
     categoryDivs.forEach(div => {
         const options = div.querySelectorAll('.category-dropdown option');
-        let categoryHasMatch = false;
-        
+        let categoryHasMatch = lowerSearchTerm === '';
         options.forEach(option => {
             const itemName = option.dataset.itemName || option.textContent.toLowerCase();
             if (itemName.includes(lowerSearchTerm)) {
@@ -182,7 +187,7 @@ function filterComponentList(searchTerm) {
     });
 }
 
-// --- Build Management ---
+// Add item to current build
 function handleAddItem(itemData) {
     const existingItem = currentBuild.find(buildItem => buildItem.item.id === itemData.id);
     let itemNetPower = 0;
@@ -209,6 +214,7 @@ function handleAddItem(itemData) {
     calculateAndDisplayTotals();
 }
 
+// Update current build panel
 function updateCurrentBuildPanel() {
     const selectedItemsListDiv = document.getElementById('selected-items-list');
     if (!selectedItemsListDiv) return;
@@ -284,6 +290,7 @@ function updateCurrentBuildPanel() {
     });
 }
 
+// Adjust item quantity in build
 function handleChangeQuantity(itemId, change) {
     const buildItemIndex = currentBuild.findIndex(bi => bi.item.id === itemId);
     if (buildItemIndex > -1) {
@@ -296,7 +303,7 @@ function handleChangeQuantity(itemId, change) {
     }
 }
 
-// --- Totals Calculation and Display ---
+// Calculate and display totals for materials and power
 function calculateAndDisplayTotals() {
     const totalMaterials = {};
     let totalPowerGenerated = 0;
@@ -332,7 +339,7 @@ function calculateAndDisplayTotals() {
     updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerGenerated, totalPowerConsumed, totalNetPower);
 }
 
-// NEW: Enhanced to include summary section
+// Update totals panel with summary, materials, and power
 function updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerGenerated, totalPowerConsumed, totalNetPower) {
     const materialsSummaryListDiv = document.getElementById('materials-summary-list');
     const materialsSummaryDiscountedListDiv = document.getElementById('materials-summary-discounted-list');
@@ -342,27 +349,29 @@ function updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerG
     const powerWarningDiv = document.getElementById('power-warning');
     const totalsPanel = document.getElementById('total-materials-panel');
 
-    // NEW: Add summary section
+    // Add summary section
     let summaryDiv = totalsPanel.querySelector('.summary');
     if (!summaryDiv) {
         summaryDiv = document.createElement('div');
         summaryDiv.className = 'summary';
         totalsPanel.insertBefore(summaryDiv, totalsPanel.querySelector('.totals-container'));
     }
-    const { netWater } = calculateWaterTotals(currentBuild);
+    const { netWater, totalStorage } = calculateWaterTotals(currentBuild);
     summaryDiv.innerHTML = `
         <p><strong>Total Materials:</strong> ${Object.keys(totalMaterials).length}</p>
         <p><strong>Net Power:</strong> ${totalNetPower} W</p>
         <p><strong>Net Water:</strong> ${netWater} ml/hour</p>
+        <p><strong>Total Water Storage:</strong> ${totalStorage} ml</p>
     `;
 
+    // Display materials (non-categorized for simplicity)
     materialsSummaryListDiv.innerHTML = Object.keys(totalMaterials).length === 0
         ? '<ul><li class="empty-totals-message">No materials required yet.</li></ul>'
-        : '<ul>' + Object.entries(totalMaterials).map(([name, qty]) => `<li>${name.replace(/_/g, ' ')}: ${qty}</li>`).join('') + '</ul>';
+        : '<ul>' + Object.entries(totalMaterials).map(([name, qty]) => `<li title="Farm ${name} in Hagga Rift">${name.replace(/_/g, ' ')}: ${qty}</li>`).join('') + '</ul>';
 
     materialsSummaryDiscountedListDiv.innerHTML = Object.keys(discountedTotalMaterials).length === 0
         ? '<ul><li class="empty-totals-message">No materials to discount.</li></ul>'
-        : '<ul>' + Object.entries(discountedTotalMaterials).map(([name, qty]) => `<li>${name.replace(/_/g, ' ')}: ${qty}</li>`).join('') + '</ul>';
+        : '<ul>' + Object.entries(discountedTotalMaterials).map(([name, qty]) => `<li title="Farm ${name} in Hagga Rift">${name.replace(/_/g, ' ')}: ${qty}</li>`).join('') + '</ul>';
 
     totalPowerGeneratedSpan.textContent = totalPowerGenerated;
     totalPowerConsumedSpan.textContent = totalPowerConsumed;
@@ -382,52 +391,65 @@ function updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerG
         : '';
 }
 
-// --- Water Calculator ---
+// NEW: Calculate water production and storage from data.json
 function calculateWaterTotals(buildItems) {
     let totalWaterProduced = 0;
-    let totalWaterConsumed = 0;
-    
+    let totalStorage = 0;
+
     buildItems.forEach(({ item, quantity }) => {
-        if (item.water_production) {
-            totalWaterProduced += item.water_production.quantity * quantity;
+        // Handle water production from output_production
+        if (item.output_production) {
+            item.output_production.forEach(op => {
+                if (op.item_id === "water" && op.quantity != null) {
+                    totalWaterProduced += Number(op.quantity) * quantity;
+                }
+            });
         }
-        if (item.water_consumption) {
-            totalWaterConsumed += item.water_consumption.quantity * quantity;
+        // Handle water storage from water_capacity
+        if (item.water_capacity) {
+            totalStorage += Number(item.water_capacity) * quantity;
         }
     });
-    
+
+    // No water consumption data in current data.json, so assume 0
+    const totalWaterConsumed = 0;
     const netWater = totalWaterProduced - totalWaterConsumed;
-    return { totalWaterProduced, totalWaterConsumed, netWater };
+    return { totalWaterProduced, totalWaterConsumed, netWater, totalStorage };
 }
 
+// NEW: Update water calculator modal with production and storage
 function updateWaterCalculator(buildItems) {
-    const { totalWaterProduced, totalWaterConsumed, netWater } = calculateWaterTotals(buildItems);
     const waterTotalsDiv = document.getElementById('water-totals');
-    waterTotalsDiv.innerHTML = `
-        <p>Total Water Produced: ${totalWaterProduced} ml/hour</p>
-        <p>Total Water Consumed: ${totalWaterConsumed} ml/hour</p>
-        <p class="${netWater >= 0 ? 'net-positive' : 'net-negative'}">
-            Net Water: ${netWater} ml/hour
-        </p>
-    `;
+    const { totalWaterProduced, totalWaterConsumed, netWater, totalStorage } = calculateWaterTotals(buildItems);
+    
+    waterTotalsDiv.innerHTML = totalWaterProduced === 0 && totalStorage === 0
+        ? '<p class="warning-message">No water-producing or storage items in your build.</p>'
+        : `
+            <p>Total Water Produced: ${totalWaterProduced} ml/hour</p>
+            <p>Total Water Consumed: ${totalWaterConsumed} ml/hour</p>
+            <p class="${netWater >= 0 ? 'net-positive' : 'net-negative'}">Net Water: ${netWater} ml/hour</p>
+            <p>Total Water Storage: ${totalStorage} ml</p>
+        `;
 }
 
-// --- Build Report ---
+// Generate build report for export
 function generateBuildReport() {
     const totalMaterials = calculateTotalMaterials(currentBuild);
     const { totalPowerGenerated, totalPowerConsumed, totalNetPower } = calculatePowerTotals(currentBuild);
-    const { totalWaterProduced, totalWaterConsumed, netWater } = calculateWaterTotals(currentBuild);
-    
+    const { totalWaterProduced, totalWaterConsumed, netWater, totalStorage } = calculateWaterTotals(currentBuild);
+
     return `
         Build Summary:
         Total Materials: ${Object.keys(totalMaterials).length}
         Net Power: ${totalNetPower} W
         Net Water: ${netWater} ml/hour
+        Total Water Storage: ${totalStorage} ml
         Materials:
         ${Object.entries(totalMaterials).map(([m, q]) => `${m}: ${q}`).join('\n')}
     `;
 }
 
+// Calculate total materials for report
 function calculateTotalMaterials(buildItems) {
     const totalMaterials = {};
     buildItems.forEach(({ item, quantity }) => {
@@ -440,10 +462,11 @@ function calculateTotalMaterials(buildItems) {
     return totalMaterials;
 }
 
+// Calculate power totals for report
 function calculatePowerTotals(buildItems) {
     let totalPowerGenerated = 0;
     let totalPowerConsumed = 0;
-    
+
     buildItems.forEach(({ item, quantity }) => {
         if (item.output_production) {
             item.output_production.forEach(op => {
@@ -456,7 +479,7 @@ function calculatePowerTotals(buildItems) {
             totalPowerConsumed += item.power_consumption_w * quantity;
         }
     });
-    
+
     const totalNetPower = totalPowerGenerated - totalPowerConsumed;
     return { totalPowerGenerated, totalPowerConsumed, totalNetPower };
 }

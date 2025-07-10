@@ -169,7 +169,7 @@ header h1 {
     color: var(--dune-text-primary);
 }
 
-/* Current Build Panel Styling - selected items */
+/* Current Build Panel Styling */
 #selected-items-list .selected-item {
     background-color: var(--dune-panel-bg-lighter);
     padding: 12px;
@@ -219,9 +219,9 @@ header h1 {
 /* Buttons */
 .add-item-btn,
 .quantity-controls button,
-#open-water-calculator, /* NEW: Style applied to water calculator button */
-#close-water-calculator, /* NEW: Style applied to modal close button */
-#export-build /* NEW: Style applied to export button */ {
+#open-water-calculator,
+#close-water-calculator,
+#export-build {
     background-color: var(--dune-accent-fremen-blue);
     color: var(--dune-text-primary);
     border: 1px solid var(--dune-accent-fremen-blue-darker);
@@ -415,21 +415,21 @@ footer {
     border: 0;
 }
 
-/* NEW: Water Calculator Modal Styles */
+/* Water Calculator Modal Styles */
 #water-calculator-modal {
     position: fixed;
     top: 20%;
     left: 20%;
     width: 60%;
-    background: #1a1a1a; /* Dark background for contrast */
+    background: #1a1a1a;
     padding: 20px;
-    border: 1px solid #ccc; /* Light border for visibility */
-    z-index: 1000; /* Ensure it appears above other content */
+    border: 1px solid #ccc;
+    z-index: 1000;
 }
 
 #water-calculator-modal h3 {
     margin-bottom: 10px;
-    color: var(--dune-accent-spice); /* Consistent with theme */
+    color: var(--dune-accent-spice);
 }
 
 #water-totals p {
@@ -438,19 +438,19 @@ footer {
 }
 
 .net-positive {
-    color: #73d487; /* Green for positive values */
+    color: #73d487;
 }
 
 .net-negative {
-    color: #ff776b; /* Red for negative values, matches danger text */
+    color: #ff776b;
 }
 
-/* NEW: Summary Section Styles */
+/* Summary Section Styles */
 .summary {
     margin-bottom: 20px;
     padding: 10px;
-    background: #2a2a2a; /* Slightly lighter dark background */
-    border: 1px solid #ccc; /* Light border for definition */
+    background: #2a2a2a;
+    border: 1px solid #ccc;
 }
 
 .summary p {
@@ -459,11 +459,10 @@ footer {
 }
 
 .summary p strong {
-    color: var(--dune-accent-metal); /* Consistent accent color */
+    color: var(--dune-accent-metal);
 }
 
-/* NEW: Export Button Specific Styles */
+/* Export Button Styles */
 #export-build {
-    /* Inherits from general button styles above */
-    margin-left: 10px; /* Spacing from water calculator button */
+    margin-left: 10px;
 }
