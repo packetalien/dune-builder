@@ -22,6 +22,48 @@
     "operational_notes": "Essential for all base building activities. The first step in establishing a foothold on Arrakis."
   },
   {
+    "id": "purifier_blood_iron",
+    "name": "Blood Purifier",
+    "type": "Utility",
+    "tier": "Iron",
+    "description": "Extracts water from blood for faster hydration.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 90
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 15,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Requires power to operate."
+  },
+  {
+    "id": "purifier_blood_improved",
+    "name": "Improved Blood Purifier",
+    "type": "Utility",
+    "tier": "Iron",
+    "description": "Improved version of the Blood Purifier for faster water extraction from blood.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 90
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 15,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Requires power to operate."
+  },
+  {
     "id": "refinery_ore_small_iron",
     "name": "Small Ore Refinery",
     "type": "Crafting Station",
@@ -31,14 +73,13 @@
     "crafting_materials": [
       {
         "item_id": "salvaged_metal",
-        "quantity": 30
-      },
-      {
-        "item_id": "plant_fiber",
-        "quantity": 10
+        "quantity": 90
       }
     ],
-    "power_consumption_w": 50,
+    "health": 1250,
+    "power_consumption_w": 15,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 200,
     "output_production": null,
     "fuel_type": null,
     "operational_notes": "Used for refining iron and copper ores."
@@ -53,213 +94,242 @@
     "crafting_materials": [
       {
         "item_id": "steel_ingot",
-        "quantity": 50
+        "quantity": 125
       },
       {
-        "item_id": "silicone_block",
-        "quantity": 20
+        "item_id": "cobalt_paste",
+        "quantity": 60
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 50
       }
     ],
-    "power_consumption_w": 75,
+    "health": 2500,
+    "power_consumption_w": 45,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 500,
     "output_production": null,
     "fuel_type": null,
     "operational_notes": "Requires power to operate. Can refine multiple types of ores."
   },
   {
-    "id": "refinery_ore_large_plastanium",
+    "id": "refinery_ore_large_plastinium",
     "name": "Large Ore Refinery",
     "type": "Crafting Station",
-    "tier": "Plastanium",
+    "tier": "Plastinium",
     "description": "The Large Ore Refinery offers the highest refining capacity and efficiency for ores.",
     "crafting_station": "Placeables Tab (Construction Tool)",
     "crafting_materials": [
       {
-        "item_id": "plastanium_ingot",
-        "quantity": 100
+        "item_id": "plastinium_ingot",
+        "quantity": 380
       },
       {
-        "item_id": "advanced_component",
-        "quantity": 50
+        "item_id": "silicon_block",
+        "quantity": 540
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 400
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 200
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 745
+      },
+      {
+        "item_id": "advanced_machinery",
+        "quantity": 40
       }
     ],
-    "power_consumption_w": 150,
+    "health": 4000,
+    "power_consumption_w": 350,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 1000,
     "output_production": null,
     "fuel_type": null,
-    "operational_notes": "High power consumption but significantly faster refining speed. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact crafting materials and power consumption."
+    "operational_notes": "High power consumption but significantly faster refining speed."
   },
   {
-    "id": "refinery_chemical_medium_steel",
-    "name": "Medium Chemical Refinery",
+    "id": "factory_chemical_small",
+    "name": "Small Chemical Factory",
     "type": "Crafting Station",
-    "tier": "Steel",
-    "description": "A medium-sized refinery for processing chemical resources with improved efficiency.",
+    "tier": "Iron",
+    "description": "Processes chemical resources at a basic level.",
     "crafting_station": "Placeables Tab (Construction Tool)",
     "crafting_materials": [
       {
-        "item_id": "steel_ingot",
-        "quantity": 40
-      },
-      {
-        "item_id": "silicone_block",
-        "quantity": 15
+        "item_id": "copper",
+        "quantity": 45
       }
     ],
-    "power_consumption_w": 100,
+    "health": 1250,
+    "power_consumption_w": 15,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 200,
     "output_production": null,
     "fuel_type": null,
-    "operational_notes": "Used for refining chemical resources. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
+    "operational_notes": "Used for basic chemical resource processing."
   },
   {
-    "id": "refinery_spice_large_plastanium",
+    "id": "factory_chemical_medium",
+    "name": "Medium Chemical Factory",
+    "type": "Crafting Station",
+    "tier": "Duraluminum",
+    "description": "A medium-sized factory for processing chemical resources with improved efficiency.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "duraluminum_ingot",
+        "quantity": 200
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 90
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 50
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 35
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 350,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for refining chemical resources."
+  },
+  {
+    "id": "refinery_spice_small",
+    "name": "Spice Refinery",
+    "type": "Crafting Station",
+    "tier": "Duraluminum",
+    "description": "Processes Spice Sand into valuable Spice Melange.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "duraluminum_ingot",
+        "quantity": 160
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 130
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 80
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 70
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 200,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 200,
+    "output_production": [
+      {
+        "item_id": "spice_melange",
+        "quantity": 1,
+        "rate_per_hour": null
+      }
+    ],
+    "fuel_type": null,
+    "operational_notes": "Requires power to operate."
+  },
+  {
+    "id": "refinery_spice_medium",
+    "name": "Medium Spice Refinery",
+    "type": "Crafting Station",
+    "tier": "Plastinium",
+    "description": "Processes Spice Sand into Spice Melange more efficiently than the small Spice Refinery.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "plastinium_ingot",
+        "quantity": 285
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 225
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 135
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 100
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 190
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 350,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 500,
+    "output_production": [
+      {
+        "item_id": "spice_melange",
+        "quantity": 10,
+        "rate_per_hour": null
+      }
+    ],
+    "fuel_type": null,
+    "operational_notes": "Requires power to operate."
+  },
+  {
+    "id": "refinery_spice_large_plastinium",
     "name": "Large Spice Refinery",
     "type": "Crafting Station",
-    "tier": "Plastanium",
+    "tier": "Plastinium",
     "description": "A large refinery for processing Spice with maximum efficiency.",
     "crafting_station": "Placeables Tab (Construction Tool)",
     "crafting_materials": [
       {
-        "item_id": "plastanium_ingot",
-        "quantity": 120
+        "item_id": "plastinium_ingot",
+        "quantity": 950
       },
       {
-        "item_id": "advanced_component",
-        "quantity": 60
+        "item_id": "silicon_block",
+        "quantity": 1080
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 350
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 1000
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 1110
+      },
+      {
+        "item_id": "advanced_machinery",
+        "quantity": 55
       }
     ],
-    "power_consumption_w": 200,
+    "health": 20000,
+    "power_consumption_w": 500,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 1000,
     "output_production": null,
     "fuel_type": null,
-    "operational_notes": "High power consumption but fastest Spice refining speed. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
-  },
-  {
-    "id": "fabricator_survival_iron",
-    "name": "Survival Fabricator",
-    "type": "Crafting Station",
-    "tier": "Iron",
-    "description": "Crafts basic survival items and components.",
-    "crafting_station": "Placeables Tab (Construction Tool)",
-    "crafting_materials": [
-      {
-        "item_id": "salvaged_metal",
-        "quantity": 20
-      },
-      {
-        "item_id": "plant_fiber",
-        "quantity": 15
-      }
-    ],
-    "power_consumption_w": 25,
-    "output_production": null,
-    "fuel_type": null,
-    "operational_notes": "Essential for crafting filters, tools, and other basic items."
-  },
-  {
-    "id": "fabricator_survival_advanced_plastanium",
-    "name": "Advanced Survival Fabricator",
-    "type": "Crafting Station",
-    "tier": "Plastanium",
-    "description": "Crafts advanced survival items with higher efficiency.",
-    "crafting_station": "Placeables Tab (Construction Tool)",
-    "crafting_materials": [
-      {
-        "item_id": "plastanium_ingot",
-        "quantity": 80
-      },
-      {
-        "item_id": "advanced_component",
-        "quantity": 40
-      }
-    ],
-    "power_consumption_w": 100,
-    "output_production": null,
-    "fuel_type": null,
-    "operational_notes": "Used for crafting high-end survival gear. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
-  },
-  {
-    "id": "fabricator_vehicle_advanced_plastanium",
-    "name": "Advanced Vehicle Fabricator",
-    "type": "Crafting Station",
-    "tier": "Plastanium",
-    "description": "Crafts advanced vehicles with improved capabilities.",
-    "crafting_station": "Placeables Tab (Construction Tool)",
-    "crafting_materials": [
-      {
-        "item_id": "plastanium_ingot",
-        "quantity": 90
-      },
-      {
-        "item_id": "advanced_component",
-        "quantity": 45
-      }
-    ],
-    "power_consumption_w": 120,
-    "output_production": null,
-    "fuel_type": null,
-    "operational_notes": "Used for crafting advanced vehicles. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
-  },
-  {
-    "id": "windtrap_t3",
-    "name": "Windtrap",
-    "type": "Utility",
-    "tier": "Duraluminum",
-    "description": "A structure that passively collects water from the air's humidity. Essential for industrial-scale water production.",
-    "crafting_station": "Utilities Tab (Construction Tool)",
-    "crafting_materials": [
-      {
-        "item_id": "duraluminum_ingot",
-        "quantity": 90
-      },
-      {
-        "item_id": "silicone_block",
-        "quantity": 30
-      },
-      {
-        "item_id": "calibrated_servok",
-        "quantity": 20
-      }
-    ],
-    "power_consumption_w": 75,
-    "output_production": [
-      {
-        "item_id": "water",
-        "quantity": 2700,
-        "rate_per_hour": "ml"
-      }
-    ],
-    "fuel_type": "Filter (Makeshift or Standard)",
-    "operational_notes": "Must be placed outdoors to function. Water generation is passive and continues while offline."
-  },
-  {
-    "id": "windtrap_large_aluminum",
-    "name": "Large Windtrap",
-    "type": "Utility",
-    "tier": "Aluminum",
-    "description": "Collects a large amount of water from the air. Requires filters.",
-    "crafting_station": "Utilities Tab (Construction Tool)",
-    "crafting_materials": [
-      {
-        "item_id": "aluminum_ingot",
-        "quantity": 120
-      },
-      {
-        "item_id": "silicone_block",
-        "quantity": 40
-      },
-      {
-        "item_id": "calibrated_servok",
-        "quantity": 30
-      }
-    ],
-    "power_consumption_w": 100,
-    "output_production": [
-      {
-        "item_id": "water",
-        "quantity": 5400,
-        "rate_per_hour": "ml"
-      }
-    ],
-    "fuel_type": "Filter (Standard or Advanced)",
-    "operational_notes": "Place outdoors. Passive water collection with filter supply."
+    "operational_notes": "High power consumption but fastest Spice refining speed."
   },
   {
     "id": "deathstill_fremen_steel",
@@ -271,23 +341,27 @@
     "crafting_materials": [
       {
         "item_id": "steel_ingot",
-        "quantity": 80
+        "quantity": 60
       },
       {
-        "item_id": "silicone_block",
-        "quantity": 20
+        "item_id": "silicon_block",
+        "quantity": 28
       },
       {
-        "item_id": "advanced_component",
-        "quantity": 10
+        "item_id": "complex_machinery",
+        "quantity": 32
       }
     ],
+    "health": 1250,
     "power_consumption_w": 200,
+    "inventory_slot_capacity": null,
+    "inventory_volume_capacity": null,
     "output_production": [
       {
         "item_id": "water",
         "quantity": 25000,
-        "rate_per_hour": "ml"
+        "rate_per_hour": "ml",
+        "processing_time": "1h:00:00"
       }
     ],
     "fuel_type": null,
@@ -303,49 +377,358 @@
     "crafting_materials": [
       {
         "item_id": "duraluminum_ingot",
-        "quantity": 100
+        "quantity": 240
       },
       {
-        "item_id": "silicone_block",
-        "quantity": 30
+        "item_id": "silicon_block",
+        "quantity": 170
       },
       {
-        "item_id": "advanced_component",
-        "quantity": 20
+        "item_id": "complex_machinery",
+        "quantity": 70
       }
     ],
-    "power_consumption_w": 250,
+    "health": 2500,
+    "power_consumption_w": 350,
+    "inventory_slot_capacity": null,
+    "inventory_volume_capacity": null,
     "output_production": [
       {
         "item_id": "water",
         "quantity": 45000,
-        "rate_per_hour": "ml"
+        "rate_per_hour": "ml",
+        "processing_time": "00:50:00"
       }
     ],
     "fuel_type": null,
     "operational_notes": "More efficient than basic Deathstill. Needs corpses and power."
   },
   {
-    "id": "purifier_blood_iron",
-    "name": "Blood Purifier",
+    "id": "fabricator_basic",
+    "name": "Fabricator",
+    "type": "Crafting Station",
+    "tier": "Iron",
+    "description": "Crafts basic items and components up to Iron Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 75
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 10,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Essential for crafting basic items."
+  },
+  {
+    "id": "fabricator_garment_steel",
+    "name": "Garment Fabricator",
+    "type": "Crafting Station",
+    "tier": "Steel",
+    "description": "Crafts garments up to Duraluminum Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 40
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 30
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 40,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for crafting garments."
+  },
+  {
+    "id": "fabricator_garment_advanced_plastinium",
+    "name": "Advanced Garment Fabricator",
+    "type": "Crafting Station",
+    "tier": "Plastinium",
+    "description": "Crafts advanced garments up to Plastinium Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "plastinium_ingot",
+        "quantity": 140
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 180
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 100
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 45
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 150
+      },
+      {
+        "item_id": "thermoelectric_cooler",
+        "quantity": 30
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 150,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for crafting high-end garments."
+  },
+  {
+    "id": "fabricator_survival_steel",
+    "name": "Survival Fabricator",
+    "type": "Crafting Station",
+    "tier": "Steel",
+    "description": "Crafts survival items up to Duraluminum Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 40
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 30
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 40,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Essential for crafting survival items."
+  },
+  {
+    "id": "fabricator_survival_advanced_plastinium",
+    "name": "Advanced Survival Fabricator",
+    "type": "Crafting Station",
+    "tier": "Plastinium",
+    "description": "Crafts advanced survival items up to Plastinium Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "plastinium_ingot",
+        "quantity": 140
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 180
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 100
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 45
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 150
+      },
+      {
+        "item_id": "thermoelectric_cooler",
+        "quantity": 30
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 150,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for crafting high-end survival gear."
+  },
+  {
+    "id": "fabricator_weapons_steel",
+    "name": "Weapons Fabricator",
+    "type": "Crafting Station",
+    "tier": "Steel",
+    "description": "Crafts weapons up to Duraluminum Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 40
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 30
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 40,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for crafting weapons."
+  },
+  {
+    "id": "fabricator_weapons_advanced_plastinium",
+    "name": "Advanced Weapons Fabricator",
+    "type": "Crafting Station",
+    "tier": "Plastinium",
+    "description": "Crafts advanced weapons up to Plastinium Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "plastinium_ingot",
+        "quantity": 140
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 180
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 100
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 45
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 150
+      },
+      {
+        "item_id": "military_power_regulator",
+        "quantity": 40
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 150,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for crafting high-end weapons."
+  },
+  {
+    "id": "fabricator_vehicles_steel",
+    "name": "Vehicles Fabricator",
+    "type": "Crafting Station",
+    "tier": "Steel",
+    "description": "Crafts vehicles up to Duraluminum Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 40
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 30
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 40,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for crafting vehicles."
+  },
+  {
+    "id": "fabricator_vehicles_advanced_plastinium",
+    "name": "Advanced Vehicles Fabricator",
+    "type": "Crafting Station",
+    "tier": "Plastinium",
+    "description": "Crafts advanced vehicles up to Plastinium Products.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "plastinium_ingot",
+        "quantity": 140
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 180
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 100
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 45
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 150
+      },
+      {
+        "item_id": "industrial_pump",
+        "quantity": 50
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 150,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 200,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Used for crafting advanced vehicles."
+  },
+  {
+    "id": "sub_fife_console",
+    "name": "Sub-Fife Console",
     "type": "Utility",
     "tier": "Iron",
-    "description": "Extracts water from blood forasties hydration.",
+    "description": "Manages base operations and defensive systems.",
     "crafting_station": "Utilities Tab (Construction Tool)",
     "crafting_materials": [
       {
         "item_id": "salvaged_metal",
-        "quantity": 20
-      },
-      {
-        "item_id": "plant_fiber",
-        "quantity": 10
+        "quantity": 25
       }
     ],
-    "power_consumption_w": 20,
+    "health": 1250,
+    "power_consumption_w": 15,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 50,
     "output_production": null,
     "fuel_type": null,
-    "operational_notes": "Requires power to operate. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
+    "operational_notes": "Essential for base management."
+  },
+  {
+    "id": "sub_fife_console_advanced",
+    "name": "Advanced Sub-Fife Console",
+    "type": "Utility",
+    "tier": "Iron",
+    "description": "Advanced version of the Sub-Fife Console with enhanced base management capabilities.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 40
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 15,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 50,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Enhanced base management."
   },
   {
     "id": "generator_fuel_t1",
@@ -360,7 +743,11 @@
         "quantity": 45
       }
     ],
+    "health": 2500,
     "power_consumption_w": null,
+    "power_generated_w": 75,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 100,
     "output_production": [
       {
         "item_id": "power",
@@ -381,18 +768,22 @@
     "crafting_materials": [
       {
         "item_id": "steel_ingot",
-        "quantity": 60
+        "quantity": 45
       },
       {
-        "item_id": "silicone_block",
-        "quantity": 25
+        "item_id": "cobalt_paste",
+        "quantity": 65
       },
       {
         "item_id": "calibrated_servok",
-        "quantity": 15
+        "quantity": 20
       }
     ],
+    "health": 2500,
     "power_consumption_w": null,
+    "power_generated_w": 150,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 100,
     "output_production": [
       {
         "item_id": "power",
@@ -404,7 +795,7 @@
     "operational_notes": "Place outdoors. Passive power generation with lubricant supply."
   },
   {
-    "id": "turbine_directional_t3",
+    "id": "turbine_directional_duraluminum",
     "name": "Directional Wind Turbine",
     "type": "Power",
     "tier": "Duraluminum",
@@ -428,7 +819,11 @@
         "quantity": 3
       }
     ],
+    "health": 3500,
     "power_consumption_w": null,
+    "power_generated_w": 350,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 100,
     "output_production": [
       {
         "item_id": "power",
@@ -440,27 +835,43 @@
     "operational_notes": "The most critical power upgrade for scaling industrial operations."
   },
   {
-    "id": "generator_spice_plastanium",
+    "id": "generator_spice_plastinium",
     "name": "Spice-Powered Generator",
     "type": "Power",
-    "tier": "Plastanium",
+    "tier": "Plastinium",
     "description": "Generates 1000W of power using Spice-infused Fuel Cells.",
     "crafting_station": "Placeables Tab (Construction Tool)",
     "crafting_materials": [
       {
-        "item_id": "plastanium_ingot",
-        "quantity": 100
+        "item_id": "plastinium_ingot",
+        "quantity": 430
       },
       {
-        "item_id": "advanced_component",
-        "quantity": 50
+        "item_id": "silicon_block",
+        "quantity": 180
       },
       {
         "item_id": "spice_melange",
-        "quantity": 10
+        "quantity": 270
+      },
+      {
+        "item_id": "complex_machinery",
+        "quantity": 100
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 300
+      },
+      {
+        "item_id": "advanced_machinery",
+        "quantity": 40
       }
     ],
+    "health": 4000,
     "power_consumption_w": null,
+    "power_generated_w": 1000,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 100,
     "output_production": [
       {
         "item_id": "power",
@@ -472,20 +883,351 @@
     "operational_notes": "Requires Spice-infused Fuel Cells for operation."
   },
   {
-    "id": "pentashield_t1",
-    "name": "Pentashield",
-    "type": "Defense",
-    "tier": "Varies",
-    "description": "A base's primary defensive energy shield, generated by the Sub-Fief console.",
-    "crafting_station": null,
-    "crafting_materials": [],
-    "power_consumption_w": 3,
+    "id": "repair_station",
+    "name": "Repair Station",
+    "type": "Utility",
+    "tier": "Iron",
+    "description": "Repairs damaged equipment and vehicles.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "iron",
+        "quantity": 40
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 20,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 200,
     "output_production": null,
     "fuel_type": null,
-    "operational_notes": "Power consumption is 3 Watts PER TILE of area covered. Scales with base size."
+    "operational_notes": "Requires power to operate."
   },
   {
-    "id": "filter_makeshift_t3",
+    "id": "recycler",
+    "name": "Recycler",
+    "type": "Utility",
+    "tier": "Iron",
+    "description": "Recycles items into raw materials.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "copper",
+        "quantity": 30
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": 15,
+    "inventory_slot_capacity": 20,
+    "inventory_volume_capacity": 100,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Requires power to operate."
+  },
+  {
+    "id": "windtrap_steel",
+    "name": "Windtrap",
+    "type": "Utility",
+    "tier": "Steel",
+    "description": "A structure that passively collects water from the air's humidity. Essential for industrial-scale water production.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 90
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 30
+      },
+      {
+        "item_id": "calibrated_servok",
+        "quantity": 30
+      }
+    ],
+    "health": 3500,
+    "power_consumption_w": 75,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 25,
+    "water_capacity": 500,
+    "output_production": [
+      {
+        "item_id": "water",
+        "quantity": 2700,
+        "rate_per_hour": "ml"
+      }
+    ],
+    "fuel_type": "Filter (Makeshift or Standard)",
+    "operational_notes": "Must be placed outdoors to function. Water generation is passive and continues while offline."
+  },
+  {
+    "id": "windtrap_large_duraluminum",
+    "name": "Large Windtrap",
+    "type": "Utility",
+    "tier": "Duraluminum",
+    "description": "Collects a large amount of water from the air. Requires filters.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "duraluminum_ingot",
+        "quantity": 240
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 250
+      },
+      {
+        "item_id": "calibrated_servok",
+        "quantity": 70
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 5
+      }
+    ],
+    "health": 3500,
+    "power_consumption_w": 135,
+    "inventory_slot_capacity": 5,
+    "inventory_volume_capacity": 25,
+    "water_capacity": 500,
+    "output_production": [
+      {
+        "item_id": "water",
+        "quantity": 6300,
+        "rate_per_hour": "ml"
+      }
+    ],
+    "fuel_type": "Filter (Standard or Advanced)",
+    "operational_notes": "Place outdoors. Passive water collection with filter supply."
+  },
+  {
+    "id": "pentashield_surface_vertical",
+    "name": "Pentashield Surface Vertical",
+    "type": "Defense",
+    "tier": "Steel",
+    "description": "A vertical defensive energy shield for base protection.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 2
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 20
+      },
+      {
+        "item_id": "calibrated_servok",
+        "quantity": 6
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 3,
+    "inventory_slot_capacity": null,
+    "inventory_volume_capacity": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Requires Sub-Fife Console for operation."
+  },
+  {
+    "id": "pentashield_surface_horizontal",
+    "name": "Pentashield Surface Horizontal",
+    "type": "Defense",
+    "tier": "Steel",
+    "description": "A horizontal defensive energy shield for base protection.",
+    "crafting_station": "Utilities Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 2
+      },
+      {
+        "item_id": "cobalt_paste",
+        "quantity": 20
+      },
+      {
+        "item_id": "calibrated_servok",
+        "quantity": 6
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": 3,
+    "inventory_slot_capacity": null,
+    "inventory_volume_capacity": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Requires Sub-Fife Console for operation."
+  },
+  {
+    "id": "storage_small",
+    "name": "Small Storage Container",
+    "type": "Storage",
+    "tier": "Iron",
+    "description": "A small storage container for items and resources.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 35
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": null,
+    "inventory_slot_capacity": 10,
+    "inventory_volume_capacity": 250,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Provides basic storage space for items."
+  },
+  {
+    "id": "chest_iron",
+    "name": "Chest",
+    "type": "Storage",
+    "tier": "Iron",
+    "description": "A basic storage container for items and resources.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "iron",
+        "quantity": 20
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": null,
+    "inventory_slot_capacity": 20,
+    "inventory_volume_capacity": 750,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Provides storage space for items."
+  },
+  {
+    "id": "chest_aluminum",
+    "name": "Storage Container",
+    "type": "Storage",
+    "tier": "Aluminum",
+    "description": "A storage container for items and resources.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "aluminum_ingot",
+        "quantity": 45
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 8
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": null,
+    "inventory_slot_capacity": 45,
+    "inventory_volume_capacity": 1750,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Provides storage space for items."
+  },
+  {
+    "id": "chest_plastinium",
+    "name": "Medium Storage Container",
+    "type": "Storage",
+    "tier": "Plastinium",
+    "description": "A medium storage container for items and resources.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "plastinium_ingot",
+        "quantity": 70
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 14
+      },
+      {
+        "item_id": "spice_melange",
+        "quantity": 4
+      }
+    ],
+    "health": 4000,
+    "power_consumption_w": null,
+    "inventory_slot_capacity": 100,
+    "inventory_volume_capacity": 3500,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Provides large storage space for items."
+  },
+  {
+    "id": "cistern_water_small",
+    "name": "Water Cistern",
+    "type": "Storage",
+    "tier": "Iron",
+    "description": "Stores water for base operations.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "copper",
+        "quantity": 25
+      }
+    ],
+    "health": 1250,
+    "power_consumption_w": null,
+    "water_capacity": 5000,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Stores water for base use."
+  },
+  {
+    "id": "cistern_water_medium",
+    "name": "Medium Water Cistern",
+    "type": "Storage",
+    "tier": "Steel",
+    "description": "Stores a medium amount of water for base operations.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 60
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 30
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": null,
+    "water_capacity": 25000,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Stores water for base use."
+  },
+  {
+    "id": "cistern_water_large",
+    "name": "Large Water Cistern",
+    "type": "Storage",
+    "tier": "Duraluminum",
+    "description": "Stores a large amount of water for base operations.",
+    "crafting_station": "Placeables Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "duraluminum_ingot",
+        "quantity": 150
+      },
+      {
+        "item_id": "silicon_block",
+        "quantity": 160
+      },
+      {
+        "item_id": "industrial_pump",
+        "quantity": 25
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": null,
+    "water_capacity": 100000,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Stores water for base use."
+  },
+  {
+    "id": "filter_makeshift_steel",
     "name": "Makeshift Filter",
     "type": "Component",
     "tier": "Steel",
@@ -511,7 +1253,7 @@
     "operational_notes": "Consumed over time by the Windtrap."
   },
   {
-    "id": "filter_standard_t4",
+    "id": "filter_standard_aluminum",
     "name": "Standard Filter",
     "type": "Component",
     "tier": "Aluminum",
@@ -531,7 +1273,7 @@
         "quantity": 10
       },
       {
-        "item_id": "silicone_block",
+        "item_id": "silicon_block",
         "quantity": 4
       }
     ],
@@ -541,15 +1283,15 @@
     "operational_notes": "Higher tier filter, suggesting greater efficiency or duration."
   },
   {
-    "id": "filter_particulate_t5",
+    "id": "filter_particulate_plastinium",
     "name": "Advanced Particulate Filter",
     "type": "Component",
-    "tier": "Plastanium",
+    "tier": "Plastinium",
     "description": "A high-efficiency filter designed for advanced utilities, requiring rare materials.",
     "crafting_station": "Survival Fabricator",
     "crafting_materials": [
       {
-        "item_id": "plastanium_ingot",
+        "item_id": "plastinium_ingot",
         "quantity": 8
       },
       {
@@ -557,7 +1299,7 @@
         "quantity": 20
       },
       {
-        "item_id": "silicone_block",
+        "item_id": "silicon_block",
         "quantity": 14
       },
       {
@@ -579,11 +1321,11 @@
     "operational_notes": "Consumed over time by advanced utilities."
   },
   {
-    "id": "plastone_t3",
+    "id": "plastone_steel",
     "name": "Plastone",
     "type": "Refined Material",
     "tier": "Steel",
-    "description": "An artificial composite of Silicone and Basalt used in sandstorm-resistant construction.",
+    "description": "An artificial composite of Silicon and Basalt used in sandstorm-resistant construction.",
     "crafting_station": "Medium Ore Refinery",
     "crafting_materials": [
       {
@@ -591,7 +1333,7 @@
         "quantity": 200
       },
       {
-        "item_id": "silicone_block",
+        "item_id": "silicon_block",
         "quantity": 1
       },
       {
@@ -609,70 +1351,5 @@
     ],
     "fuel_type": null,
     "operational_notes": "Premier building material for endgame construction."
-  },
-  {
-    "id": "chest_iron",
-    "name": "Chest",
-    "type": "Storage",
-    "tier": "Iron",
-    "description": "A basic storage container for items and resources.",
-    "crafting_station": "Placeables Tab (Construction Tool)",
-    "crafting_materials": [
-      {
-        "item_id": "salvaged_metal",
-        "quantity": 15
-      },
-      {
-        "item_id": "plant_fiber",
-        "quantity": 5
-      }
-    ],
-    "power_consumption_w": null,
-    "output_production": null,
-    "fuel_type": null,
-    "operational_notes": "Provides storage space for items. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
-  },{
-  "id": "chest_aluminum",
-  "name": "Chest",
-  "type": "Storage",
-  "tier": "Aluminum",
-  "description": "An aluminum storage container for items and resources.",
-  "crafting_station": "Placeables Tab (Construction Tool)",
-  "crafting_materials": [
-    {
-      "item_id": "aluminum_ingot",
-      "quantity": 15
-    },
-    {
-      "item_id": "silicone_block",
-      "quantity": 5
-    }
-  ],
-  "power_consumption_w": null,
-  "output_production": null,
-  "fuel_type": null,
-  "operational_notes": "Provides storage space for items. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
-},
-{
-  "id": "chest_plastinium",
-  "name": "Chest",
-  "type": "Storage",
-  "tier": "Plastinium",
-  "description": "A plastinium storage container for items and resources.",
-  "crafting_station": "Placeables Tab (Construction Tool)",
-  "crafting_materials": [
-    {
-      "item_id": "plastanium_ingot",
-      "quantity": 15
-    },
-    {
-      "item_id": "advanced_component",
-      "quantity": 5
-    }
-  ],
-  "power_consumption_w": null,
-  "output_production": null,
-  "fuel_type": null,
-  "operational_notes": "Provides storage space for items. Note: Verify with [dune.gaming.tools](https://dune.gaming.tools/) for exact details."
-}
+  }
 ]
