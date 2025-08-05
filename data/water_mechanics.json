@@ -1,0 +1,242 @@
+{
+  "water_mechanics": {
+    "production_sources": {
+      "windtrap_small_steel": {
+        "name": "Small Windtrap",
+        "production_rate": 2700,
+        "unit": "ml/hour",
+        "power_consumption": 75,
+        "filter_requirement": "Makeshift or Standard",
+        "placement": "Outdoors only",
+        "notes": "Passive water collection from air humidity"
+      },
+      "windtrap_large_duraluminum": {
+        "name": "Large Windtrap", 
+        "production_rate": 6300,
+        "unit": "ml/hour",
+        "power_consumption": 135,
+        "filter_requirement": "Standard or Advanced",
+        "placement": "Outdoors only",
+        "notes": "High-efficiency water collection"
+      },
+      "purifier_blood_iron": {
+        "name": "Blood Purifier",
+        "production_rate": 0,
+        "unit": "ml/hour",
+        "power_consumption": 15,
+        "notes": "Extracts water from blood, not air"
+      },
+      "purifier_corpse_iron": {
+        "name": "Corpse Purifier",
+        "production_rate": 0,
+        "unit": "ml/hour", 
+        "power_consumption": 15,
+        "notes": "Extracts water from corpses, not air"
+      }
+    },
+    "storage_components": {
+      "cistern_water_small": {
+        "name": "Water Cistern",
+        "capacity": 5000,
+        "unit": "ml",
+        "notes": "Basic water storage"
+      },
+      "cistern_water_medium": {
+        "name": "Medium Water Cistern",
+        "capacity": 25000,
+        "unit": "ml",
+        "notes": "Medium water storage"
+      },
+      "cistern_water_large": {
+        "name": "Large Water Cistern", 
+        "capacity": 100000,
+        "unit": "ml",
+        "notes": "Large water storage"
+      }
+    },
+    "consumption_rates": {
+      "player_hydration": {
+        "rate": 100,
+        "unit": "ml/hour",
+        "notes": "Base player hydration needs"
+      },
+      "plant_growth": {
+        "rate": 50,
+        "unit": "ml/hour",
+        "notes": "Per plant growth system"
+      },
+      "industrial_processes": {
+        "rate": 200,
+        "unit": "ml/hour", 
+        "notes": "Per industrial crafting station"
+      }
+    },
+    "faction_specific": {
+      "harkonnen": {
+        "water_efficiency": 0.8,
+        "notes": "Harkonnen buildings use 20% less water"
+      },
+      "atreides": {
+        "water_efficiency": 1.2,
+        "notes": "Atreides buildings use 20% more water but have better production"
+      },
+      "fremen": {
+        "water_efficiency": 0.6,
+        "notes": "Fremen buildings use 40% less water"
+      }
+    }
+  },
+  "building_components": {
+    "walls": {
+      "regular": {
+        "harkonnen": {
+          "name": "Harkonnen Wall",
+          "materials": {
+            "steel_ingot": 50,
+            "concrete_block": 20
+          },
+          "health": 5000,
+          "notes": "Standard Harkonnen defensive wall"
+        },
+        "atreides": {
+          "name": "Atreides Wall", 
+          "materials": {
+            "steel_ingot": 40,
+            "concrete_block": 25
+          },
+          "health": 4500,
+          "notes": "Standard Atreides defensive wall"
+        },
+        "fremen": {
+          "name": "Fremen Wall",
+          "materials": {
+            "salvaged_metal": 60,
+            "stone_block": 30
+          },
+          "health": 3500,
+          "notes": "Basic Fremen wall using local materials"
+        }
+      },
+      "reinforced": {
+        "harkonnen": {
+          "name": "Reinforced Harkonnen Wall",
+          "materials": {
+            "steel_ingot": 100,
+            "concrete_block": 40,
+            "duraluminum_ingot": 20
+          },
+          "health": 10000,
+          "notes": "Heavy defensive wall"
+        },
+        "atreides": {
+          "name": "Reinforced Atreides Wall",
+          "materials": {
+            "steel_ingot": 80,
+            "concrete_block": 50,
+            "duraluminum_ingot": 15
+          },
+          "health": 9000,
+          "notes": "Strong defensive wall"
+        }
+      }
+    },
+    "doors": {
+      "regular": {
+        "harkonnen": {
+          "name": "Harkonnen Door",
+          "materials": {
+            "steel_ingot": 30,
+            "mechanical_parts": 10
+          },
+          "health": 3000,
+          "notes": "Standard door"
+        },
+        "atreides": {
+          "name": "Atreides Door",
+          "materials": {
+            "steel_ingot": 25,
+            "mechanical_parts": 12
+          },
+          "health": 2800,
+          "notes": "Standard door"
+        },
+        "fremen": {
+          "name": "Fremen Door",
+          "materials": {
+            "salvaged_metal": 40,
+            "mechanical_parts": 8
+          },
+          "health": 2000,
+          "notes": "Basic door"
+        }
+      },
+      "security": {
+        "harkonnen": {
+          "name": "Harkonnen Security Door",
+          "materials": {
+            "steel_ingot": 60,
+            "mechanical_parts": 20,
+            "electronic_components": 15
+          },
+          "health": 6000,
+          "notes": "High-security door"
+        },
+        "atreides": {
+          "name": "Atreides Security Door",
+          "materials": {
+            "steel_ingot": 50,
+            "mechanical_parts": 25,
+            "electronic_components": 12
+          },
+          "health": 5500,
+          "notes": "High-security door"
+        }
+      }
+    },
+    "foundations": {
+      "harkonnen": {
+        "name": "Harkonnen Foundation",
+        "materials": {
+          "concrete_block": 100,
+          "steel_ingot": 20
+        },
+        "notes": "Strong foundation for heavy structures"
+      },
+      "atreides": {
+        "name": "Atreides Foundation", 
+        "materials": {
+          "concrete_block": 80,
+          "steel_ingot": 25
+        },
+        "notes": "Balanced foundation"
+      },
+      "fremen": {
+        "name": "Fremen Foundation",
+        "materials": {
+          "stone_block": 120,
+          "salvaged_metal": 30
+        },
+        "notes": "Basic foundation using local materials"
+      }
+    }
+  },
+  "game_updates": {
+    "latest_mechanics": {
+      "water_consumption": {
+        "player_base": 100,
+        "unit": "ml/hour",
+        "notes": "Base player hydration needs"
+      },
+      "faction_bonuses": {
+        "harkonnen": "Reduced water consumption",
+        "atreides": "Improved water production",
+        "fremen": "Minimal water needs"
+      },
+      "environmental_factors": {
+        "deep_desert": "Reduced water production",
+        "oasis_areas": "Increased water production",
+        "storm_seasons": "Variable production rates"
+      }
+    }
+  }
+} 

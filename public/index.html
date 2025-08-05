@@ -30,7 +30,7 @@
         <section id="total-materials-panel" class="panel">
             <h2>Totals</h2>
             <!-- Button to open water calculator modal -->
-            <button id="open-water-calculator">Water Calculator</button>
+            <button id="open-water-calculator">Enhanced Water Calculator</button>
             <!-- Button to export build report as text file -->
             <button id="export-build">Export Build</button>
             <div class="totals-container">
@@ -56,12 +56,15 @@
     <footer>
         <p>© <span id="current-year"></span> Dune: Awakening Base Build Calculator. Fan-made tool.</p>
     </footer>
-    <!-- Water calculator modal, hidden by default -->
+    <!-- Enhanced water calculator modal, hidden by default -->
     <div id="water-calculator-modal" style="display: none;" role="dialog" aria-labelledby="water-calculator-title">
-        <h3 id="water-calculator-title">Water Calculator</h3>
+        <h3 id="water-calculator-title">Enhanced Water Calculator</h3>
         <div id="water-totals"></div>
         <button id="close-water-calculator">Close</button>
     </div>
+    <!-- Load enhanced water calculator first -->
+    <script src="enhanced_water_calculator.js"></script>
+    <!-- Load main application -->
     <script src="app.js"></script>
     <!-- Inline script to set current year -->
     <script>

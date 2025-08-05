@@ -1,0 +1,386 @@
+[
+  {
+    "id": "wall_harkonnen_regular",
+    "name": "Harkonnen Wall",
+    "type": "Defense",
+    "tier": "Steel",
+    "description": "Standard Harkonnen defensive wall. Sturdy and reliable for base protection.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 50
+      },
+      {
+        "item_id": "concrete_block",
+        "quantity": 20
+      }
+    ],
+    "health": 5000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Standard defensive wall. Can be upgraded to reinforced version."
+  },
+  {
+    "id": "wall_harkonnen_reinforced",
+    "name": "Reinforced Harkonnen Wall",
+    "type": "Defense",
+    "tier": "Duraluminum",
+    "description": "Heavy defensive wall with enhanced durability. Requires advanced materials.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 100
+      },
+      {
+        "item_id": "concrete_block",
+        "quantity": 40
+      },
+      {
+        "item_id": "duraluminum_ingot",
+        "quantity": 20
+      }
+    ],
+    "health": 10000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Heavy defensive wall. Significantly more durable than standard walls."
+  },
+  {
+    "id": "wall_atreides_regular",
+    "name": "Atreides Wall",
+    "type": "Defense",
+    "tier": "Steel",
+    "description": "Standard Atreides defensive wall. Balanced protection and efficiency.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 40
+      },
+      {
+        "item_id": "concrete_block",
+        "quantity": 25
+      }
+    ],
+    "health": 4500,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Balanced defensive wall. Efficient use of materials."
+  },
+  {
+    "id": "wall_atreides_reinforced",
+    "name": "Reinforced Atreides Wall",
+    "type": "Defense",
+    "tier": "Duraluminum",
+    "description": "Strong defensive wall with excellent durability. Atreides engineering excellence.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 80
+      },
+      {
+        "item_id": "concrete_block",
+        "quantity": 50
+      },
+      {
+        "item_id": "duraluminum_ingot",
+        "quantity": 15
+      }
+    ],
+    "health": 9000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Strong defensive wall with excellent material efficiency."
+  },
+  {
+    "id": "wall_fremen_regular",
+    "name": "Fremen Wall",
+    "type": "Defense",
+    "tier": "Iron",
+    "description": "Basic Fremen wall using local materials. Simple but effective.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 60
+      },
+      {
+        "item_id": "stone_block",
+        "quantity": 30
+      }
+    ],
+    "health": 3500,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Basic wall using local materials. Cost-effective for early game."
+  },
+  {
+    "id": "door_harkonnen_regular",
+    "name": "Harkonnen Door",
+    "type": "Defense",
+    "tier": "Steel",
+    "description": "Standard Harkonnen door. Reliable access control for base security.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 30
+      },
+      {
+        "item_id": "mechanical_parts",
+        "quantity": 10
+      }
+    ],
+    "health": 3000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Standard door for base access control."
+  },
+  {
+    "id": "door_harkonnen_security",
+    "name": "Harkonnen Security Door",
+    "type": "Defense",
+    "tier": "Duraluminum",
+    "description": "High-security door with advanced locking mechanisms. Maximum protection.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 60
+      },
+      {
+        "item_id": "mechanical_parts",
+        "quantity": 20
+      },
+      {
+        "item_id": "electronic_components",
+        "quantity": 15
+      }
+    ],
+    "health": 6000,
+    "power_consumption_w": 5,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "High-security door requiring power for electronic locks."
+  },
+  {
+    "id": "door_atreides_regular",
+    "name": "Atreides Door",
+    "type": "Defense",
+    "tier": "Steel",
+    "description": "Standard Atreides door. Efficient design with good security.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 25
+      },
+      {
+        "item_id": "mechanical_parts",
+        "quantity": 12
+      }
+    ],
+    "health": 2800,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Efficient door design with good material usage."
+  },
+  {
+    "id": "door_atreides_security",
+    "name": "Atreides Security Door",
+    "type": "Defense",
+    "tier": "Duraluminum",
+    "description": "High-security door with advanced Atreides engineering. Excellent protection.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 50
+      },
+      {
+        "item_id": "mechanical_parts",
+        "quantity": 25
+      },
+      {
+        "item_id": "electronic_components",
+        "quantity": 12
+      }
+    ],
+    "health": 5500,
+    "power_consumption_w": 3,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "High-security door with efficient power usage."
+  },
+  {
+    "id": "door_fremen_regular",
+    "name": "Fremen Door",
+    "type": "Defense",
+    "tier": "Iron",
+    "description": "Basic Fremen door using local materials. Simple but functional.",
+    "crafting_station": "Defense Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 40
+      },
+      {
+        "item_id": "mechanical_parts",
+        "quantity": 8
+      }
+    ],
+    "health": 2000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Basic door using local materials. Cost-effective."
+  },
+  {
+    "id": "foundation_harkonnen",
+    "name": "Harkonnen Foundation",
+    "type": "Structure",
+    "tier": "Steel",
+    "description": "Strong foundation for heavy Harkonnen structures. Built to last.",
+    "crafting_station": "Structure Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "concrete_block",
+        "quantity": 100
+      },
+      {
+        "item_id": "steel_ingot",
+        "quantity": 20
+      }
+    ],
+    "health": 8000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Strong foundation supporting heavy structures."
+  },
+  {
+    "id": "foundation_atreides",
+    "name": "Atreides Foundation",
+    "type": "Structure",
+    "tier": "Steel",
+    "description": "Balanced foundation for Atreides structures. Efficient and reliable.",
+    "crafting_station": "Structure Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "concrete_block",
+        "quantity": 80
+      },
+      {
+        "item_id": "steel_ingot",
+        "quantity": 25
+      }
+    ],
+    "health": 7000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Balanced foundation with efficient material usage."
+  },
+  {
+    "id": "foundation_fremen",
+    "name": "Fremen Foundation",
+    "type": "Structure",
+    "tier": "Iron",
+    "description": "Basic foundation using local materials. Simple but effective.",
+    "crafting_station": "Structure Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "stone_block",
+        "quantity": 120
+      },
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 30
+      }
+    ],
+    "health": 5000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Basic foundation using local materials. Cost-effective."
+  },
+  {
+    "id": "roof_harkonnen",
+    "name": "Harkonnen Roof",
+    "type": "Structure",
+    "tier": "Steel",
+    "description": "Sturdy roof for Harkonnen buildings. Provides excellent protection from the elements.",
+    "crafting_station": "Structure Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 40
+      },
+      {
+        "item_id": "concrete_block",
+        "quantity": 30
+      }
+    ],
+    "health": 4000,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Sturdy roof providing excellent weather protection."
+  },
+  {
+    "id": "roof_atreides",
+    "name": "Atreides Roof",
+    "type": "Structure",
+    "tier": "Steel",
+    "description": "Efficient roof for Atreides buildings. Good protection with material efficiency.",
+    "crafting_station": "Structure Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "steel_ingot",
+        "quantity": 35
+      },
+      {
+        "item_id": "concrete_block",
+        "quantity": 35
+      }
+    ],
+    "health": 3800,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Efficient roof design with good material usage."
+  },
+  {
+    "id": "roof_fremen",
+    "name": "Fremen Roof",
+    "type": "Structure",
+    "tier": "Iron",
+    "description": "Basic roof using local materials. Provides essential protection.",
+    "crafting_station": "Structure Tab (Construction Tool)",
+    "crafting_materials": [
+      {
+        "item_id": "salvaged_metal",
+        "quantity": 50
+      },
+      {
+        "item_id": "stone_block",
+        "quantity": 40
+      }
+    ],
+    "health": 2500,
+    "power_consumption_w": null,
+    "output_production": null,
+    "fuel_type": null,
+    "operational_notes": "Basic roof using local materials. Cost-effective protection."
+  }
+] 

@@ -1,13 +1,17 @@
-// Dune: Awakening Base Build Calculator
-// Main JavaScript file for handling UI interactions, material calculations, power, and water
+// Dune: Awakening Base Build Calculator - Node.js Edition
+// Updated to work with Express.js backend API
 
 // Global variables to store data and current build
 let buildingData = null; // Stores loaded JSON data
 let currentBuild = []; // Tracks selected items, quantities, and net power
+let waterCalculator = null; // Enhanced water calculator instance
 
 // Cache DOM elements on initialization
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Calculator Initializing...");
+
+    // Initialize enhanced water calculator
+    waterCalculator = new EnhancedWaterCalculator();
 
     // Cache critical DOM elements
     const componentListDiv = document.getElementById('component-list');
@@ -28,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // Load building data
+    // Load building data from API
     await loadBuildingData();
     updateCurrentBuildPanel();
     updateTotalsPanel({}, {}, 0, 0, 0);
@@ -45,10 +49,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.warn("'item-search' input not found. Search unavailable.");
     }
 
-    // Event listeners for water calculator modal
+    // Event listeners for enhanced water calculator modal
     document.getElementById('open-water-calculator').addEventListener('click', () => {
         document.getElementById('water-calculator-modal').style.display = 'block';
-        updateWaterCalculator(currentBuild);
+        updateEnhancedWaterCalculator(currentBuild);
     });
     document.getElementById('close-water-calculator').addEventListener('click', () => {
         document.getElementById('water-calculator-modal').style.display = 'none';
@@ -56,19 +60,88 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Event listener for export build report
     document.getElementById('export-build').addEventListener('click', () => {
-        const report = generateBuildReport();
-        const blob = new Blob([report], { type: 'text/plain' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'build_report.txt';
-        link.click();
+        exportBuildReport();
     });
+
+    // Initialize faction and environment selectors
+    initializeWaterCalculatorControls();
 });
 
-// Load building data from data.json
+// Initialize water calculator controls
+function initializeWaterCalculatorControls() {
+    // Add faction selector to water calculator modal
+    const waterModal = document.getElementById('water-calculator-modal');
+    if (waterModal) {
+        const controlsDiv = document.createElement('div');
+        controlsDiv.className = 'water-calculator-controls';
+        controlsDiv.innerHTML = `
+            <div class="control-group">
+                <label for="faction-select">Faction:</label>
+                <select id="faction-select">
+                    <option value="neutral">Neutral</option>
+                    <option value="harkonnen">Harkonnen</option>
+                    <option value="atreides">Atreides</option>
+                    <option value="fremen">Fremen</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="environment-select">Environment:</label>
+                <select id="environment-select">
+                    <option value="standard">Standard</option>
+                    <option value="deep_desert">Deep Desert</option>
+                    <option value="oasis">Oasis</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="player-count">Players:</label>
+                <input type="number" id="player-count" value="1" min="1" max="10">
+            </div>
+            <div class="control-group">
+                <label for="plant-systems">Plant Systems:</label>
+                <input type="number" id="plant-systems" value="0" min="0" max="20">
+            </div>
+            <div class="control-group">
+                <label for="industrial-stations">Industrial Stations:</label>
+                <input type="number" id="industrial-stations" value="0" min="0" max="20">
+            </div>
+        `;
+        
+        // Insert controls before the water totals div
+        const waterTotalsDiv = document.getElementById('water-totals');
+        waterModal.insertBefore(controlsDiv, waterTotalsDiv);
+
+        // Add event listeners for controls
+        document.getElementById('faction-select').addEventListener('change', (e) => {
+            waterCalculator.setFaction(e.target.value);
+            updateEnhancedWaterCalculator(currentBuild);
+        });
+
+        document.getElementById('environment-select').addEventListener('change', (e) => {
+            waterCalculator.setEnvironment(e.target.value);
+            updateEnhancedWaterCalculator(currentBuild);
+        });
+
+        document.getElementById('player-count').addEventListener('input', (e) => {
+            waterCalculator.playerCount = parseInt(e.target.value) || 1;
+            updateEnhancedWaterCalculator(currentBuild);
+        });
+
+        document.getElementById('plant-systems').addEventListener('input', (e) => {
+            waterCalculator.plantSystems = parseInt(e.target.value) || 0;
+            updateEnhancedWaterCalculator(currentBuild);
+        });
+
+        document.getElementById('industrial-stations').addEventListener('input', (e) => {
+            waterCalculator.industrialStations = parseInt(e.target.value) || 0;
+            updateEnhancedWaterCalculator(currentBuild);
+        });
+    }
+}
+
+// Load building data from API
 async function loadBuildingData() {
     try {
-        const response = await fetch('data.json');
+        const response = await fetch('/api/items');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -304,39 +377,64 @@ function handleChangeQuantity(itemId, change) {
 }
 
 // Calculate and display totals for materials and power
-function calculateAndDisplayTotals() {
-    const totalMaterials = {};
-    let totalPowerGenerated = 0;
-    let totalPowerConsumed = 0;
+async function calculateAndDisplayTotals() {
+    try {
+        const response = await fetch('/api/calculate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ buildItems: currentBuild })
+        });
 
-    currentBuild.forEach(buildItem => {
-        const { item, quantity } = buildItem;
-
-        if (item.crafting_materials) {
-            item.crafting_materials.forEach(material => {
-                totalMaterials[material.item_id] = (totalMaterials[material.item_id] || 0) + (material.quantity * quantity);
-            });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        if (item.output_production) {
-            item.output_production.forEach(op => {
-                if (op.item_id === "power" && op.quantity != null) {
-                    totalPowerGenerated += Number(op.quantity) * quantity;
-                }
-            });
-        }
-        if (item.power_consumption_w != null) {
-            totalPowerConsumed += Number(item.power_consumption_w) * quantity;
-        }
-    });
+        const totals = await response.json();
+        updateTotalsPanel(
+            totals.materials, 
+            totals.discountedMaterials, 
+            totals.power.generated, 
+            totals.power.consumed, 
+            totals.power.net
+        );
+    } catch (error) {
+        console.error("Error calculating totals:", error);
+        // Fallback to client-side calculation
+        const totalMaterials = {};
+        let totalPowerGenerated = 0;
+        let totalPowerConsumed = 0;
 
-    const totalNetPower = totalPowerGenerated - totalPowerConsumed;
-    const discountedTotalMaterials = {};
-    for (const material in totalMaterials) {
-        discountedTotalMaterials[material] = Math.ceil(totalMaterials[material] / 2);
+        currentBuild.forEach(buildItem => {
+            const { item, quantity } = buildItem;
+
+            if (item.crafting_materials) {
+                item.crafting_materials.forEach(material => {
+                    totalMaterials[material.item_id] = (totalMaterials[material.item_id] || 0) + (material.quantity * quantity);
+                });
+            }
+
+            if (item.output_production) {
+                item.output_production.forEach(op => {
+                    if (op.item_id === "power" && op.quantity != null) {
+                        totalPowerGenerated += Number(op.quantity) * quantity;
+                    }
+                });
+            }
+            if (item.power_consumption_w != null) {
+                totalPowerConsumed += Number(item.power_consumption_w) * quantity;
+            }
+        });
+
+        const totalNetPower = totalPowerGenerated - totalPowerConsumed;
+        const discountedTotalMaterials = {};
+        for (const material in totalMaterials) {
+            discountedTotalMaterials[material] = Math.ceil(totalMaterials[material] / 2);
+        }
+
+        updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerGenerated, totalPowerConsumed, totalNetPower);
     }
-
-    updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerGenerated, totalPowerConsumed, totalNetPower);
 }
 
 // Update totals panel with summary, materials, and power
@@ -356,12 +454,24 @@ function updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerG
         summaryDiv.className = 'summary';
         totalsPanel.insertBefore(summaryDiv, totalsPanel.querySelector('.totals-container'));
     }
-    const { netWater, totalStorage } = calculateWaterTotals(currentBuild);
+    
+    // Use enhanced water calculator if available
+    let waterInfo = { netWater: 0, totalStorage: 0 };
+    if (waterCalculator) {
+        const waterBalance = waterCalculator.calculateNetWater(currentBuild);
+        waterInfo = {
+            netWater: waterBalance.netWater,
+            totalStorage: waterBalance.storage.totalStorage
+        };
+    } else {
+        waterInfo = calculateWaterTotals(currentBuild);
+    }
+    
     summaryDiv.innerHTML = `
         <p><strong>Total Materials:</strong> ${Object.keys(totalMaterials).length}</p>
         <p><strong>Net Power:</strong> ${totalNetPower} W</p>
-        <p><strong>Net Water:</strong> ${netWater} ml/hour</p>
-        <p><strong>Total Water Storage:</strong> ${totalStorage} ml</p>
+        <p><strong>Net Water:</strong> ${waterInfo.netWater.toFixed(0)} ml/hour</p>
+        <p><strong>Total Water Storage:</strong> ${waterInfo.totalStorage.toFixed(0)} ml</p>
     `;
 
     // Display materials (non-categorized for simplicity)
@@ -391,7 +501,7 @@ function updateTotalsPanel(totalMaterials, discountedTotalMaterials, totalPowerG
         : '';
 }
 
-// NEW: Calculate water production and storage from data.json
+// Calculate water production and storage from data.json (fallback)
 function calculateWaterTotals(buildItems) {
     let totalWaterProduced = 0;
     let totalStorage = 0;
@@ -417,22 +527,104 @@ function calculateWaterTotals(buildItems) {
     return { totalWaterProduced, totalWaterConsumed, netWater, totalStorage };
 }
 
-// NEW: Update water calculator modal with production and storage
-function updateWaterCalculator(buildItems) {
+// Update enhanced water calculator modal
+function updateEnhancedWaterCalculator(buildItems) {
+    if (!waterCalculator) {
+        console.error("Enhanced water calculator not initialized");
+        return;
+    }
+
     const waterTotalsDiv = document.getElementById('water-totals');
-    const { totalWaterProduced, totalWaterConsumed, netWater, totalStorage } = calculateWaterTotals(buildItems);
+    const waterBalance = waterCalculator.calculateNetWater(buildItems);
     
-    waterTotalsDiv.innerHTML = totalWaterProduced === 0 && totalStorage === 0
-        ? '<p class="warning-message">No water-producing or storage items in your build.</p>'
-        : `
-            <p>Total Water Produced: ${totalWaterProduced} ml/hour</p>
-            <p>Total Water Consumed: ${totalWaterConsumed} ml/hour</p>
-            <p class="${netWater >= 0 ? 'net-positive' : 'net-negative'}">Net Water: ${netWater} ml/hour</p>
-            <p>Total Water Storage: ${totalStorage} ml</p>
-        `;
+    if (waterBalance.production.totalProduction === 0 && waterBalance.storage.totalStorage === 0) {
+        waterTotalsDiv.innerHTML = '<p class="warning-message">No water-producing or storage items in your build.</p>';
+        return;
+    }
+
+    let html = `
+        <div class="water-balance-section">
+            <h4>Production</h4>
+            ${waterBalance.production.details.map(detail => 
+                `<p>- ${detail.item} (x${detail.quantity}): ${detail.adjustedProduction.toFixed(0)} ml/hour</p>`
+            ).join('')}
+            <p><strong>Total Production:</strong> ${waterBalance.production.totalProduction.toFixed(0)} ml/hour</p>
+        </div>
+
+        <div class="water-balance-section">
+            <h4>Storage</h4>
+            ${waterBalance.storage.details.map(detail => 
+                `<p>- ${detail.item} (x${detail.quantity}): ${detail.capacity.toFixed(0)} ml</p>`
+            ).join('')}
+            <p><strong>Total Storage:</strong> ${waterBalance.storage.totalStorage.toFixed(0)} ml</p>
+        </div>
+
+        <div class="water-balance-section">
+            <h4>Consumption</h4>
+            ${waterBalance.consumption.details.map(detail => 
+                `<p>- ${detail.type}: ${detail.total.toFixed(0)} ml/hour</p>`
+            ).join('')}
+            <p><strong>Total Consumption:</strong> ${waterBalance.consumption.totalConsumption.toFixed(0)} ml/hour</p>
+        </div>
+
+        <div class="water-balance-section">
+            <h4>Balance</h4>
+            <p class="${waterBalance.isSustainable ? 'net-positive' : 'net-negative'}">
+                <strong>Net Water:</strong> ${waterBalance.netWater.toFixed(0)} ml/hour
+            </p>
+            <p><strong>Status:</strong> ${waterBalance.efficiency}</p>
+            ${!waterBalance.isSustainable ? 
+                `<p><strong>Sustainability:</strong> ${waterBalance.sustainabilityHours.toFixed(1)} hours</p>` : 
+                '<p><strong>Sustainability:</strong> Infinite (surplus)</p>'
+            }
+        </div>
+    `;
+
+    waterTotalsDiv.innerHTML = html;
 }
 
-// Generate build report for export
+// Export build report using API
+async function exportBuildReport() {
+    try {
+        const buildName = prompt('Enter a name for your build (optional):', 'my_build') || 'build';
+        
+        const response = await fetch('/api/export', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                buildItems: currentBuild,
+                buildName: buildName
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${buildName}_report.txt`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error("Error exporting build report:", error);
+        // Fallback to client-side export
+        const report = generateBuildReport();
+        const blob = new Blob([report], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'build_report.txt';
+        link.click();
+    }
+}
+
+// Generate build report for export (fallback)
 function generateBuildReport() {
     const totalMaterials = calculateTotalMaterials(currentBuild);
     const { totalPowerGenerated, totalPowerConsumed, totalNetPower } = calculatePowerTotals(currentBuild);
@@ -482,4 +674,4 @@ function calculatePowerTotals(buildItems) {
 
     const totalNetPower = totalPowerGenerated - totalPowerConsumed;
     return { totalPowerGenerated, totalPowerConsumed, totalNetPower };
-}
+} 
