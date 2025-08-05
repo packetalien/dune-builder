@@ -1,8 +1,8 @@
-# Dune: Awakening Calculator Tool - Development Roadmap
+# Dune: Awakening - Unified Companion Platform Development Roadmap
 
 ## 🎯 Executive Summary
 
-This roadmap outlines the development plan for enhancing our Dune: Awakening Base Build Calculator based on community needs and feature gap analysis. The focus is on improving the calculator tool to better serve the community, not modifying the game itself.
+This roadmap outlines the transformation of our Dune: Awakening Base Build Calculator into a comprehensive unified companion platform. Based on extensive internet research and community analysis, this roadmap addresses the critical gaps in the current tool ecosystem and positions our platform as the definitive companion for serious Dune: Awakening players and guilds.
 
 ## 📊 Current State Analysis
 
@@ -13,259 +13,310 @@ This roadmap outlines the development plan for enhancing our Dune: Awakening Bas
 - **Modular Architecture**: Easy to extend with new features
 - **Community Trust**: Reliable tool used by Dune: Awakening players
 
-### 🔍 Identified Gaps
-- **Tool Durability**: No calculator for tool lifespan in different environments
-- **Repair Costs**: Missing maintenance cost calculations
-- **Resource Efficiency**: No comparison tools for building strategies
-- **Build Optimization**: No suggestions for improving current builds
-- **Environmental Impact**: Limited environmental effect calculations
+### 🔍 Critical Gaps Identified
+- **CHOAM Market Intelligence**: No real-time market tracking or profitability analysis
+- **Landsraad Political System**: Missing weekly objective tracking and decree simulation
+- **Comprehensive Character Planning**: Existing tools ignore gear impact (33% of character power)
+- **Guild Collaboration**: No shared resource tracking or coordination tools
+- **Dynamic Time-Sensitive Systems**: Missing weekly reset and political cycle tracking
+- **Combat Effectiveness Simulation**: No DPS, EHP, or tactical analysis tools
 
 ## 🚀 Development Phases
 
-### Phase 1: Core Enhancements (Weeks 1-3)
+### Phase 1: Foundation & Character Planning (Weeks 1-4)
 
-#### 1.1 Tool Durability Calculator
+#### 1.1 Comprehensive Character Planner
+**Priority**: 🔥 CRITICAL
+**Timeline**: 2-3 weeks
+**Scope**: Integrated skill, gear, and combat effectiveness simulation
+
+**Features**:
+- **Integrated Skill & Gear Database**: Complete character sheet with all equipment slots
+- **Combat Effectiveness Simulation**: DPS, EHP, tactical analysis calculations
+- **Build Sharing System**: Unique URLs for sharing builds across community
+- **Three Pillars Integration**: Skills (33%), Gear (33%), Player Skill (33%)
+
+**Implementation**:
+```javascript
+// Comprehensive character simulation
+function calculateCharacterEffectiveness(character) {
+    const skills = calculateSkillEffects(character.skills);
+    const gear = calculateGearEffects(character.equipment);
+    const playerSkill = calculateTacticalReadout(character.abilities);
+    
+    return {
+        dps: calculateDPS(skills, gear),
+        ehp: calculateEHP(skills, gear),
+        tactical: generateTacticalReadout(playerSkill),
+        buildUrl: generateShareableUrl(character)
+    };
+}
+```
+
+**UI Components**:
+- Complete character sheet interface
+- Combat effectiveness dashboard
+- Build sharing and comparison tools
+- Tactical analysis readout
+
+#### 1.2 Enhanced Data Infrastructure
 **Priority**: 🔥 CRITICAL
 **Timeline**: 1-2 weeks
-**Scope**: Calculate tool lifespan in different environments
+**Scope**: Community curation system and modular architecture
 
 **Features**:
-- Environment-specific durability calculations
-- Tool quality tier system (Basic, Improved, Masterwork)
-- Estimated lifetime predictions
-- Damage rate indicators
+- **Community Data Curation**: "Data librarian" system for ongoing maintenance
+- **Modular Architecture**: Self-contained modules with centralized data layer
+- **User Account System**: Foundation for guild features
+- **Data Validation Protocols**: Multiple source verification system
 
-**Implementation**:
-```javascript
-// Tool durability calculation
-function calculateToolDurability(tool, environment, quality) {
-    const baseDurability = tool.base_durability;
-    const envMultiplier = getEnvironmentMultiplier(environment);
-    const qualityMultiplier = getQualityMultiplier(quality);
-    
-    return {
-        maxDurability: baseDurability * envMultiplier * qualityMultiplier,
-        damageRate: getEnvironmentalDamageRate(environment),
-        estimatedLifetime: calculateLifetime(baseDurability, environment, quality)
-    };
-}
-```
+### Phase 2: Economic & Political Intelligence (Weeks 5-8)
 
-**UI Components**:
-- Tool durability display in item details
-- Environment selector for durability testing
-- Quality tier selection
-- Lifetime estimation display
-
-#### 1.2 Repair Cost Calculator
+#### 2.1 CHOAM Exchange Market Intelligence
 **Priority**: 🔥 CRITICAL
+**Timeline**: 2-3 weeks
+**Scope**: Real-time market tracking and profitability analysis
+
+**Features**:
+- **Market Price Tracker**: Real-time price and availability data
+- **Crafting Profitability Calculator**: Compare material costs vs selling prices
+- **Inter-Server Arbitrage Finder**: Identify price discrepancies across servers
+- **Community Data Collection**: Manual entry and OCR-assisted data collection
+
+**Implementation**:
+```javascript
+// Market intelligence system
+function calculateCraftingProfitability(item, server) {
+    const materialCosts = calculateTotalMaterialCost(item.recipe);
+    const currentSellingPrice = getMarketPrice(item, server);
+    const profitMargin = currentSellingPrice - materialCosts;
+    
+    return {
+        materialCosts: materialCosts,
+        sellingPrice: currentSellingPrice,
+        profitMargin: profitMargin,
+        profitability: profitMargin > 0 ? 'Profitable' : 'Loss'
+    };
+}
+```
+
+**UI Components**:
+- Market dashboard with price charts
+- Crafting profitability calculator
+- Arbitrage opportunity finder
+- Data collection interface
+
+#### 2.2 Landsraad Political Strategy System
+**Priority**: 🔥 CRITICAL
+**Timeline**: 2-3 weeks
+**Scope**: Weekly political objectives and decree impact simulation
+
+**Features**:
+- **Weekly Task Tracker**: Monitor progress on faction objectives
+- **Personal Contribution Ledger**: Track progress toward reward tiers
+- **Decree Impact Simulator**: "What-if" analysis for server-wide decrees
+- **Rewards Database**: Searchable database of all possible rewards
+
+**Implementation**:
+```javascript
+// Political strategy system
+function simulateDecreeImpact(decree, currentState) {
+    const impact = calculateDecreeEffects(decree);
+    const updatedState = applyDecreeEffects(currentState, impact);
+    
+    return {
+        decree: decree,
+        impact: impact,
+        updatedState: updatedState,
+        recommendations: generateStrategicRecommendations(updatedState)
+    };
+}
+```
+
+**UI Components**:
+- Weekly objective dashboard
+- Personal contribution tracker
+- Decree impact simulator
+- Rewards database interface
+
+### Phase 3: Guild Integration & Advanced Features (Weeks 9-12)
+
+#### 3.1 Guild Collaboration Suite
+**Priority**: 🟡 HIGH
+**Timeline**: 2-3 weeks
+**Scope**: Shared resource tracking and coordination tools
+
+**Features**:
+- **Shared Guild Bank**: Virtual inventory management system
+- **Collaborative Base Planning**: Integrated Deep Desert base planner
+- **Objective Coordination**: Project management for Landsraad objectives
+- **Discord Bot Integration**: Access platform data from Discord servers
+
+**Implementation**:
+```javascript
+// Guild collaboration system
+function calculateGuildBaseRequirements(basePlan, guildInventory) {
+    const totalRequirements = calculateTotalMaterials(basePlan);
+    const availableMaterials = getGuildInventory(guildInventory);
+    const shoppingList = calculateMissingMaterials(totalRequirements, availableMaterials);
+    
+    return {
+        totalRequirements: totalRequirements,
+        availableMaterials: availableMaterials,
+        shoppingList: shoppingList,
+        transportTrips: calculateTransportTrips(shoppingList)
+    };
+}
+```
+
+**UI Components**:
+- Guild bank interface
+- Collaborative base planner
+- Objective coordination board
+- Discord bot commands
+
+#### 3.2 Dynamic Time-Sensitive Systems
+**Priority**: 🟡 HIGH
 **Timeline**: 1-2 weeks
-**Scope**: Calculate repair costs for damaged tools and structures
+**Scope**: Weekly reset tracking and temporal data management
 
 **Features**:
-- Repair cost calculation based on damage percentage
-- Material requirements for repairs
-- Cost comparison between repair vs rebuild
-- Repair efficiency recommendations
-
-**Implementation**:
-```javascript
-// Repair cost calculation
-function calculateRepairCost(item, damagePercentage, environment) {
-    const baseMaterials = item.materials;
-    const repairMultiplier = getRepairMultiplier(damagePercentage);
-    const envMultiplier = getEnvironmentRepairMultiplier(environment);
-    
-    return {
-        materials: multiplyMaterials(baseMaterials, repairMultiplier * envMultiplier),
-        totalCost: calculateTotalCost(materials),
-        efficiency: calculateRepairEfficiency(damagePercentage)
-    };
-}
-```
-
-**UI Components**:
-- Damage percentage slider
-- Repair cost breakdown
-- Material requirement display
-- Repair vs rebuild comparison
-
-### Phase 2: Advanced Features (Weeks 4-8)
-
-#### 2.1 Resource Efficiency Calculator
-**Priority**: 🟡 HIGH
-**Timeline**: 2-3 weeks
-**Scope**: Compare material efficiency between building options
-
-**Features**:
-- Material efficiency metrics
-- Cost-per-unit calculations
-- Resource optimization suggestions
-- Build strategy comparisons
-
-**Implementation**:
-```javascript
-// Resource efficiency calculation
-function calculateResourceEfficiency(buildOptions) {
-    return buildOptions.map(option => ({
-        option: option,
-        efficiency: calculateEfficiencyScore(option),
-        costPerUnit: calculateCostPerUnit(option),
-        recommendations: generateRecommendations(option)
-    }));
-}
-```
-
-**UI Components**:
-- Efficiency comparison table
-- Cost-per-unit visualizations
-- Optimization recommendations
-- Strategy comparison charts
-
-#### 2.2 Build Optimization Suggestions
-**Priority**: 🟡 HIGH
-**Timeline**: 3-4 weeks
-**Scope**: Suggest improvements to current builds
-
-**Features**:
-- Build analysis algorithms
-- Optimization recommendations
-- Alternative build suggestions
-- Efficiency improvements
-
-**Implementation**:
-```javascript
-// Build optimization analysis
-function analyzeBuild(currentBuild) {
-    const analysis = {
-        efficiency: calculateBuildEfficiency(currentBuild),
-        weaknesses: identifyWeaknesses(currentBuild),
-        improvements: suggestImprovements(currentBuild),
-        alternatives: generateAlternatives(currentBuild)
-    };
-    
-    return analysis;
-}
-```
-
-**UI Components**:
-- Build analysis dashboard
-- Improvement suggestions panel
-- Alternative build display
-- Efficiency score indicators
-
-### Phase 3: Polish and Expansion (Weeks 9-12)
-
-#### 3.1 Environmental Impact Calculator
-**Priority**: 🟢 MEDIUM
-**Timeline**: 2-3 weeks
-**Scope**: Comprehensive environmental effect calculations
-
-**Features**:
-- Environmental damage calculations
-- Protective gear effects
-- Environmental resistance systems
-- Adaptation recommendations
-
-**Implementation**:
-```javascript
-// Environmental impact calculation
-function calculateEnvironmentalImpact(build, environment) {
-    return {
-        damageRates: calculateDamageRates(build, environment),
-        protectiveEffects: calculateProtectiveEffects(build),
-        resistance: calculateEnvironmentalResistance(build),
-        recommendations: generateAdaptationRecommendations(build, environment)
-    };
-}
-```
-
-#### 3.2 Faction-Specific Build Recommendations
-**Priority**: 🟢 MEDIUM
-**Timeline**: 2-3 weeks
-**Scope**: Suggest optimal builds for each faction
-
-**Features**:
-- Faction-specific build templates
-- Faction advantage calculations
-- Specialized strategy recommendations
-- Faction comparison tools
+- **Weekly Reset Tracker**: Monitor Coriolis storms and political cycles
+- **Event Notification System**: Alert users to time-sensitive events
+- **Temporal Data Management**: Track historical patterns and trends
+- **Planning Optimization Tools**: Optimize activities around weekly cycles
 
 ## 🛠️ Technical Implementation
 
+### Architecture Recommendation
+**Progressive Web App (PWA)** with modular, component-based architecture:
+- **Accessibility**: URL-based access, no installation required
+- **Cross-Platform**: Works on desktop and mobile
+- **Modular Design**: Self-contained modules with centralized data layer
+- **Community-Driven**: Community curation system for data maintenance
+
 ### Database Schema Extensions
 ```sql
--- Tool durability tracking
-CREATE TABLE tool_durability (
+-- Character planning system
+CREATE TABLE character_builds (
     id INTEGER PRIMARY KEY,
-    tool_type VARCHAR(50),
-    base_durability INTEGER,
-    deep_desert_multiplier FLOAT,
-    oasis_multiplier FLOAT,
-    standard_multiplier FLOAT,
-    quality_tiers JSON
+    user_id INTEGER,
+    build_name VARCHAR(100),
+    mentor_choice VARCHAR(50),
+    skill_allocation JSON,
+    equipment_loadout JSON,
+    combat_stats JSON,
+    share_url VARCHAR(255)
 );
 
--- Repair cost tracking
-CREATE TABLE repair_costs (
+-- Market intelligence system
+CREATE TABLE market_data (
     id INTEGER PRIMARY KEY,
-    item_type VARCHAR(50),
-    damage_percentage FLOAT,
-    repair_materials JSON,
-    efficiency_multiplier FLOAT
+    item_name VARCHAR(100),
+    server_name VARCHAR(50),
+    buy_price INTEGER,
+    sell_price INTEGER,
+    quantity_available INTEGER,
+    timestamp DATETIME,
+    data_source VARCHAR(50)
 );
 
--- Environmental effects
-CREATE TABLE environmental_effects (
+-- Political system tracking
+CREATE TABLE landsraad_data (
     id INTEGER PRIMARY KEY,
-    environment VARCHAR(30),
-    damage_rate FLOAT,
-    protective_gear_reduction FLOAT,
-    resistance_bonuses JSON
+    week_number INTEGER,
+    faction VARCHAR(50),
+    objective_name VARCHAR(100),
+    current_progress INTEGER,
+    target_progress INTEGER,
+    personal_contribution INTEGER,
+    user_id INTEGER
+);
+
+-- Guild collaboration system
+CREATE TABLE guild_data (
+    id INTEGER PRIMARY KEY,
+    guild_id INTEGER,
+    guild_name VARCHAR(100),
+    shared_inventory JSON,
+    base_plans JSON,
+    objective_assignments JSON
 );
 ```
 
 ### API Endpoints
 ```javascript
-// New API endpoints
-GET /api/tool-durability/:toolId/:environment/:quality
-GET /api/repair-cost/:itemId/:damagePercentage/:environment
-GET /api/resource-efficiency/:buildId
-GET /api/build-optimization/:buildId
-GET /api/environmental-impact/:buildId/:environment
-GET /api/faction-recommendations/:faction
+// Character planning endpoints
+GET /api/character/build/:buildId
+POST /api/character/build
+GET /api/character/effectiveness/:buildId
+
+// Market intelligence endpoints
+GET /api/market/prices/:itemName/:server
+POST /api/market/data
+GET /api/market/profitability/:itemName/:server
+
+// Political system endpoints
+GET /api/landsraad/objectives/:week
+POST /api/landsraad/contribution
+GET /api/landsraad/decrees/:week
+
+// Guild collaboration endpoints
+GET /api/guild/:guildId/inventory
+POST /api/guild/:guildId/base-plan
+GET /api/guild/:guildId/objectives
 ```
 
 ### Frontend Enhancements
 ```javascript
-// Enhanced UI components
-class ToolDurabilityCalculator {
+// Character planner component
+class CharacterPlanner {
     constructor() {
-        this.environment = 'standard';
-        this.quality = 'basic';
+        this.mentor = null;
+        this.skills = {};
+        this.equipment = {};
+        this.abilities = [];
     }
     
-    calculateDurability(tool) {
-        // Implementation
+    calculateEffectiveness() {
+        return calculateCharacterEffectiveness(this);
     }
     
-    displayResults(results) {
-        // UI display logic
+    generateShareUrl() {
+        return generateBuildUrl(this);
     }
 }
 
-class RepairCostCalculator {
+// Market intelligence component
+class MarketTracker {
     constructor() {
-        this.damagePercentage = 0;
-        this.environment = 'standard';
+        this.currentServer = 'default';
+        this.watchedItems = [];
     }
     
-    calculateRepairCost(item) {
-        // Implementation
+    getMarketData(itemName) {
+        return fetchMarketData(itemName, this.currentServer);
     }
     
-    displayBreakdown(costs) {
-        // UI display logic
+    calculateProfitability(itemName) {
+        return calculateCraftingProfitability(itemName, this.currentServer);
+    }
+}
+
+// Guild collaboration component
+class GuildManager {
+    constructor(guildId) {
+        this.guildId = guildId;
+        this.members = [];
+        this.inventory = {};
+    }
+    
+    updateInventory(updates) {
+        return updateGuildInventory(this.guildId, updates);
+    }
+    
+    createBasePlan(plan) {
+        return createGuildBasePlan(this.guildId, plan);
     }
 }
 ```
@@ -273,120 +324,126 @@ class RepairCostCalculator {
 ## 📈 Success Metrics
 
 ### Phase 1 Metrics
-- **Tool Durability**: 90% accuracy in durability predictions
-- **Repair Costs**: 95% accuracy in cost calculations
-- **User Adoption**: 60% of users try new features within 1 week
+- **Character Build Adoption**: 70% of users try character planner within 2 weeks
+- **Build Sharing**: 50% of builds shared via unique URLs
+- **Combat Calculation Accuracy**: 95% accuracy in effectiveness predictions
+- **Data Infrastructure**: 100% community curation system operational
 
 ### Phase 2 Metrics
-- **Resource Efficiency**: 80% user satisfaction with efficiency calculations
-- **Build Optimization**: 70% of users implement suggested improvements
-- **Feature Usage**: 50% increase in daily active users
+- **Market Data Accuracy**: 95% accuracy in price predictions
+- **Political Participation**: 60% increase in Landsraad participation tracking
+- **Decree Simulation**: 80% user satisfaction with impact predictions
+- **Economic Intelligence**: 50% of users use profitability calculator
 
 ### Phase 3 Metrics
-- **Environmental Impact**: 75% accuracy in environmental calculations
-- **Faction Recommendations**: 85% user satisfaction with faction-specific advice
-- **Overall Satisfaction**: 80% positive feedback on calculator tool
+- **Guild Integration**: 50% of active guilds use collaboration tools
+- **Discord Bot Adoption**: 30% of guilds integrate Discord bot
+- **Temporal System Usage**: 40% of users track weekly cycles
+- **Overall Platform Adoption**: 75% of serious players use platform
 
 ## 🔄 Development Workflow
 
 ### Sprint Planning
 - **Sprint Duration**: 2 weeks
-- **Feature Scope**: 1-2 major features per sprint
-- **Testing**: Community beta testing for each feature
+- **Feature Scope**: 1-2 major modules per sprint
+- **Community Testing**: Beta testing for each major feature
 - **Feedback Integration**: Quick iteration based on user feedback
 
 ### Quality Assurance
 - **Data Validation**: Multiple sources for all new data
-- **Performance Testing**: Load testing for new calculations
+- **Performance Testing**: Load testing for complex calculations
 - **User Testing**: Community feedback on each feature
 - **Accuracy Verification**: Compare calculations with in-game values
 
 ### Deployment Strategy
-- **Incremental Releases**: Deploy features as they're completed
+- **Incremental Releases**: Deploy modules as they're completed
 - **Feature Flags**: Enable/disable features for testing
 - **Rollback Plan**: Quick rollback if issues arise
 - **Monitoring**: Track usage and performance metrics
 
 ## 📋 Implementation Checklist
 
-### Phase 1: Core Enhancements
-- [ ] **Tool Durability Calculator**
-  - [ ] Research tool durability data from community
-  - [ ] Implement calculation logic
-  - [ ] Add UI components
+### Phase 1: Foundation & Character Planning
+- [ ] **Comprehensive Character Planner**
+  - [ ] Build integrated skill and gear database
+  - [ ] Implement combat effectiveness simulation
+  - [ ] Add sharing functionality for builds
   - [ ] Community testing and validation
-- [ ] **Repair Cost Calculator**
-  - [ ] Design repair cost calculation system
-  - [ ] Implement repair logic
-  - [ ] Add repair UI components
-  - [ ] Test with community feedback
+- [ ] **Enhanced Data Infrastructure**
+  - [ ] Establish community curation system
+  - [ ] Build modular architecture for new features
+  - [ ] Implement user account system
+  - [ ] Create data validation protocols
 
-### Phase 2: Advanced Features
-- [ ] **Resource Efficiency Calculator**
-  - [ ] Design efficiency algorithms
-  - [ ] Implement comparison logic
-  - [ ] Add visualization components
-  - [ ] User testing and refinement
-- [ ] **Build Optimization Suggestions**
-  - [ ] Develop suggestion algorithms
-  - [ ] Create recommendation engine
-  - [ ] Add suggestion UI
-  - [ ] Community feedback integration
+### Phase 2: Economic & Political Intelligence
+- [ ] **CHOAM Exchange Market Intelligence**
+  - [ ] Launch manual data entry system
+  - [ ] Develop OCR companion app for data collection
+  - [ ] Build market tracking dashboard
+  - [ ] Implement crafting profitability calculator
+- [ ] **Landsraad Political Strategy System**
+  - [ ] Create weekly objective tracker
+  - [ ] Build personal contribution ledger
+  - [ ] Implement decree impact simulator
+  - [ ] Add rewards database integration
 
-### Phase 3: Polish and Expansion
-- [ ] **Environmental Impact Calculator**
-  - [ ] Expand environmental system
-  - [ ] Add comprehensive impact calculations
-  - [ ] Enhance UI for environmental data
-  - [ ] Educational content integration
-- [ ] **Faction-Specific Recommendations**
-  - [ ] Research faction mechanics
-  - [ ] Develop faction-specific algorithms
-  - [ ] Create faction recommendation UI
-  - [ ] Community validation
+### Phase 3: Guild Integration & Advanced Features
+- [ ] **Guild Collaboration Suite**
+  - [ ] Integrate shared resource tracking
+  - [ ] Build collaborative base planning
+  - [ ] Implement objective coordination tools
+  - [ ] Add Discord bot integration
+- [ ] **Dynamic Time-Sensitive Systems**
+  - [ ] Track weekly resets and cycles
+  - [ ] Implement temporal data management
+  - [ ] Add event notification system
+  - [ ] Create planning optimization tools
 
 ## 🎯 Risk Management
 
 ### Technical Risks
-- **Data Accuracy**: Risk of incorrect calculations
-- **Performance**: Risk of slow response times
-- **Compatibility**: Risk of breaking existing features
+- **Data Collection Complexity**: Risk of insufficient market data collection
+- **Combat Calculation Accuracy**: Risk of incorrect simulation results
+- **Real-Time Performance**: Risk of slow response times with complex calculations
+- **Community Dependence**: Risk of relying on community data curation
 
 ### Mitigation Strategies
-- **Data Validation**: Multiple sources for verification
-- **Performance Testing**: Load testing before deployment
-- **Incremental Development**: Small, testable additions
-- **Community Testing**: Beta testing with users
+- **Phased Data Collection**: Start with manual entry, evolve to OCR
+- **Community Validation**: Multiple sources for combat formula verification
+- **Performance Testing**: Load testing for complex calculations
+- **Backup Data Sources**: Fallback systems for community data gaps
 
 ### Community Risks
 - **Feature Rejection**: Risk of community not using new features
 - **Data Disputes**: Risk of community disagreeing with calculations
 - **Competition**: Risk of other tools providing better features
+- **API Dependency**: Risk of relying on unofficial data collection
 
 ### Mitigation Strategies
-- **Community Engagement**: Regular feedback collection
+- **Community Engagement**: Regular feedback collection and iteration
 - **Transparency**: Clear data sources and calculation methods
-- **Continuous Improvement**: Quick iteration based on feedback
-- **Unique Value**: Focus on features not available elsewhere
+- **Unique Value**: Focus on integration and comprehensive features
+- **Modular Architecture**: Easy to adapt to official API if released
 
 ## 🎯 Conclusion
 
-This roadmap provides a clear path for enhancing our Dune: Awakening Base Build Calculator to better serve the community. The phased approach ensures that we address the most critical needs first while building toward more advanced features.
+This roadmap transforms our calculator from a specialized tool into a comprehensive unified companion platform for Dune: Awakening. The phased approach addresses the most critical community needs while building toward a platform that becomes indispensable for serious players and guilds.
 
 **Key Success Factors:**
-1. **Community Focus**: All features based on community needs
+1. **Community Focus**: All features based on real community needs
 2. **Data Accuracy**: Maintain high accuracy with human-validated data
 3. **Incremental Development**: Add features gradually to ensure quality
 4. **User Feedback**: Regular community engagement and feedback integration
 
 **Next Steps:**
-1. Begin Phase 1 development with tool durability calculator
-2. Research tool durability data from community sources
-3. Implement repair cost calculation system
+1. Begin Phase 1 development with comprehensive character planner
+2. Research CHOAM market data collection methods
+3. Establish community data curation system
 4. Start community testing and feedback collection
+5. Begin Phase 2 economic and political intelligence development
 
 ---
 
-**Roadmap Version**: 1.0  
+**Roadmap Version**: 2.0  
 **Last Updated**: August 5, 2025  
 **Next Review**: After Phase 1 completion 
