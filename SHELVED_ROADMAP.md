@@ -1,3 +1,9 @@
+# 🚫 SHELVED - Dune: Awakening Development Roadmap
+
+> **Note**: This roadmap was created before understanding that this is a fan-made calculator tool, not a game modification project. Dune: Awakening is a live MMO service, and we cannot make changes to the actual game. This document is shelved pending comprehensive community feedback analysis.
+
+---
+
 # Dune: Awakening - Development Roadmap
 
 ## 🎯 Executive Summary
