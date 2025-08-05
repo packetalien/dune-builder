@@ -1,0 +1,100 @@
+{
+  "version": "2.0.0",
+  "last_updated": "2025-08-05T06:27:08.751Z",
+  "data_source": "raw_data.csv",
+  "production_sources": {
+    "windtrap_small_steel": {
+      "name": "Small Windtrap",
+      "production_rate": 2700,
+      "unit": "ml/hour",
+      "power_consumption": 75,
+      "notes": "Passive water collection from air humidity"
+    },
+    "windtrap_large_duraluminum": {
+      "name": "Large Windtrap",
+      "production_rate": 6300,
+      "unit": "ml/hour",
+      "power_consumption": 135,
+      "notes": "High-efficiency water collection"
+    },
+    "purifier_blood_iron": {
+      "name": "Blood Purifier",
+      "production_rate": 0,
+      "unit": "ml/hour",
+      "power_consumption": 15,
+      "notes": "Extracts water from blood, not air"
+    },
+    "purifier_corpse_iron": {
+      "name": "Corpse Purifier",
+      "production_rate": 0,
+      "unit": "ml/hour",
+      "power_consumption": 15,
+      "notes": "Extracts water from corpses, not air"
+    }
+  },
+  "storage_components": {
+    "cistern_water_small": {
+      "name": "Water Cistern",
+      "capacity": 5000,
+      "unit": "ml",
+      "notes": "Basic water storage"
+    },
+    "cistern_water_medium": {
+      "name": "Medium Water Cistern",
+      "capacity": 25000,
+      "unit": "ml",
+      "notes": "Medium water storage"
+    },
+    "cistern_water_large": {
+      "name": "Large Water Cistern",
+      "capacity": 100000,
+      "unit": "ml",
+      "notes": "Large water storage"
+    }
+  },
+  "consumption_rates": {
+    "player_hydration": {
+      "rate": 100,
+      "unit": "ml/hour",
+      "notes": "Base player hydration needs"
+    },
+    "plant_growth": {
+      "rate": 50,
+      "unit": "ml/hour",
+      "notes": "Per plant growth system"
+    },
+    "industrial_processes": {
+      "rate": 200,
+      "unit": "ml/hour",
+      "notes": "Per industrial crafting station"
+    }
+  },
+  "faction_modifiers": {
+    "harkonnen": {
+      "water_efficiency": 0.8,
+      "notes": "Harkonnen buildings use 20% less water"
+    },
+    "atreides": {
+      "water_efficiency": 1.2,
+      "notes": "Atreides buildings use 20% more water but have better production"
+    },
+    "fremen": {
+      "water_efficiency": 0.6,
+      "notes": "Fremen buildings use 40% less water"
+    }
+  },
+  "environmental_factors": {
+    "deep_desert": {
+      "production_modifier": 0.7,
+      "notes": "Reduced water production"
+    },
+    "oasis": {
+      "production_modifier": 1.3,
+      "notes": "Increased water production"
+    },
+    "standard": {
+      "production_modifier": 1,
+      "notes": "Normal production rates"
+    }
+  }
+}
