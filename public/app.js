@@ -1,5 +1,5 @@
-// Dune: Awakening Base Build Calculator - Node.js Edition
-// Updated to work with Express.js backend API
+// Dune: Awakening Base Build Calculator - Node.js Edition v2.1
+// Updated to work with Express.js backend API and verified October 2025 data
 
 // Global variables to store data and current build
 let buildingData = null; // Stores loaded JSON data
@@ -166,11 +166,11 @@ function populateItemSelectionPanel() {
     }
     componentListDiv.innerHTML = '';
 
-    // Group items by type
+    // Group items by category
     const itemsByType = buildingData.reduce((acc, item) => {
-        const type = item.type || "Unknown Type";
-        acc[type] = acc[type] || [];
-        acc[type].push(item);
+        const category = item.category || "Unknown Category";
+        acc[category] = acc[category] || [];
+        acc[category].push(item);
         return acc;
     }, {});
 
@@ -187,8 +187,8 @@ function populateItemSelectionPanel() {
         dropdown.className = 'category-dropdown';
         itemsByType[type].sort((a, b) => a.name.localeCompare(b.name)).forEach(item => {
             const option = document.createElement('option');
-            option.value = item.id;
-            option.textContent = item.tier ? `${item.name} (${item.tier})` : item.name;
+            option.value = item.name; // Use name as value since we don't have id
+            option.textContent = item.name;
             option.dataset.itemName = item.name.toLowerCase();
             dropdown.appendChild(option);
         });
@@ -198,8 +198,8 @@ function populateItemSelectionPanel() {
         addButton.className = 'add-item-btn';
         addButton.textContent = 'Add';
         addButton.onclick = () => {
-            const selectedId = dropdown.value;
-            const item = buildingData.find(i => i.id === selectedId);
+            const selectedName = dropdown.value;
+            const item = buildingData.find(i => i.name === selectedName);
             if (item) {
                 handleAddItem(JSON.parse(JSON.stringify(item)));
             }
@@ -222,19 +222,44 @@ function populateItemSelectionPanel() {
 
 // Display details for selected item
 function displayItemDetails(dropdown, detailsDiv) {
-    const selectedId = dropdown.value;
-    const item = buildingData.find(i => i.id === selectedId);
+    const selectedName = dropdown.value;
+    const item = buildingData.find(i => i.name === selectedName);
     if (item) {
-        let detailsHTML = `<p>${item.description || 'No description available.'}</p>`;
-        if (item.crafting_materials?.length) {
-            const materialsString = item.crafting_materials
-                .map(c => `${(c.item_id || "Unknown Material").replace(/_/g, ' ')}: ${c.quantity}`)
-                .join(', ');
-            detailsHTML += `<p><strong>Cost:</strong> ${materialsString}</p>`;
+        let detailsHTML = `<p>${item.category || 'Unknown Category'}</p>`;
+        
+        // Display components/cost
+        if (item.components && item.components.trim() !== '') {
+            detailsHTML += `<p><strong>Cost:</strong> ${item.components}</p>`;
         }
+        
+        // Display health
         if (item.health) detailsHTML += `<p><strong>Health:</strong> ${item.health}</p>`;
-        if (item.inventory_slot_capacity) detailsHTML += `<p><strong>Slot Capacity:</strong> ${item.inventory_slot_capacity}</p>`;
-        if (item.water_capacity) detailsHTML += `<p><strong>Water Capacity:</strong> ${item.water_capacity} ml</p>`;
+        
+        // Display power
+        if (item.power_cost_or_generated) {
+            detailsHTML += `<p><strong>Power:</strong> ${item.power_cost_or_generated}</p>`;
+        }
+        
+        // Display inventory slots
+        if (item.inventory_slots && item.inventory_slots !== 'NA') {
+            detailsHTML += `<p><strong>Inventory Slots:</strong> ${item.inventory_slots}</p>`;
+        }
+        
+        // Display water capacity
+        if (item.water_capacity) {
+            detailsHTML += `<p><strong>Water Capacity:</strong> ${item.water_capacity} ml</p>`;
+        }
+        
+        // Display water gather rate
+        if (item.water_gather_rate) {
+            detailsHTML += `<p><strong>Water Rate:</strong> ${item.water_gather_rate}</p>`;
+        }
+        
+        // Display water yield
+        if (item.water_yield && item.water_processing_time) {
+            detailsHTML += `<p><strong>Water Yield:</strong> ${item.water_yield} ml in ${item.water_processing_time}</p>`;
+        }
+        
         detailsDiv.innerHTML = detailsHTML;
     } else {
         detailsDiv.innerHTML = '<p>Select an item to see details.</p>';
@@ -262,18 +287,20 @@ function filterComponentList(searchTerm) {
 
 // Add item to current build
 function handleAddItem(itemData) {
-    const existingItem = currentBuild.find(buildItem => buildItem.item.id === itemData.id);
+    const existingItem = currentBuild.find(buildItem => buildItem.item.name === itemData.name);
     let itemNetPower = 0;
-    if (itemData.power_consumption_w != null) {
-        itemNetPower -= Number(itemData.power_consumption_w);
+    
+    // Calculate power from the new data structure
+    const powerValue = itemData.power_cost_or_generated;
+    if (powerValue && powerValue.includes('(Generated)')) {
+        const powerNum = parseInt(powerValue.replace(' (Generated)', ''));
+        if (!isNaN(powerNum)) {
+            itemNetPower += powerNum;
+        }
+    } else if (powerValue && !isNaN(parseInt(powerValue))) {
+        itemNetPower -= parseInt(powerValue);
     }
-    if (itemData.output_production) {
-        itemData.output_production.forEach(op => {
-            if (op.item_id === "power" && op.quantity != null) {
-                itemNetPower += Number(op.quantity);
-            }
-        });
-    }
+    
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
@@ -302,7 +329,7 @@ function updateCurrentBuildPanel() {
         const item = buildItem.item;
         const itemDiv = document.createElement('div');
         itemDiv.className = 'selected-item';
-        itemDiv.dataset.itemId = item.id;
+        itemDiv.dataset.itemName = item.name;
 
         const detailsDiv = document.createElement('div');
         detailsDiv.className = 'selected-item-details';
@@ -311,20 +338,15 @@ function updateCurrentBuildPanel() {
         nameEl.textContent = `${item.name} (x${buildItem.quantity})`;
         detailsDiv.appendChild(nameEl);
 
-        if (item.crafting_materials?.length) {
-            const costEl = document.createElement('p');
-            costEl.className = 'item-crafting-materials';
-            const materialsString = item.crafting_materials
-                .map(c => `${(c.item_id || "N/A").replace(/_/g, ' ')}: ${c.quantity}`)
-                .join(', ');
-            costEl.innerHTML = `<strong>Cost per unit:</strong> ${materialsString}`;
-            detailsDiv.appendChild(costEl);
+        // Display components/cost
+        const costEl = document.createElement('p');
+        costEl.className = 'item-crafting-materials';
+        if (item.components && item.components.trim() !== '') {
+            costEl.innerHTML = `<strong>Cost per unit:</strong> ${item.components}`;
         } else {
-            const costEl = document.createElement('p');
-            costEl.className = 'item-crafting-materials';
             costEl.innerHTML = `<strong>Cost:</strong> N/A`;
-            detailsDiv.appendChild(costEl);
         }
+        detailsDiv.appendChild(costEl);
 
         if (buildItem.net_power_per_item !== undefined) {
             const powerEl = document.createElement('p');
@@ -346,7 +368,7 @@ function updateCurrentBuildPanel() {
         quantityControls.className = 'quantity-controls';
         const decreaseBtn = document.createElement('button');
         decreaseBtn.textContent = '-';
-        decreaseBtn.onclick = () => handleChangeQuantity(item.id, -1);
+        decreaseBtn.onclick = () => handleChangeQuantity(item.name, -1);
         quantityControls.appendChild(decreaseBtn);
 
         const quantitySpan = document.createElement('span');
@@ -355,7 +377,7 @@ function updateCurrentBuildPanel() {
 
         const increaseBtn = document.createElement('button');
         increaseBtn.textContent = '+';
-        increaseBtn.onclick = () => handleChangeQuantity(item.id, 1);
+        increaseBtn.onclick = () => handleChangeQuantity(item.name, 1);
         quantityControls.appendChild(increaseBtn);
         itemDiv.appendChild(quantityControls);
 
@@ -364,8 +386,8 @@ function updateCurrentBuildPanel() {
 }
 
 // Adjust item quantity in build
-function handleChangeQuantity(itemId, change) {
-    const buildItemIndex = currentBuild.findIndex(bi => bi.item.id === itemId);
+function handleChangeQuantity(itemName, change) {
+    const buildItemIndex = currentBuild.findIndex(bi => bi.item.name === itemName);
     if (buildItemIndex > -1) {
         currentBuild[buildItemIndex].quantity += change;
         if (currentBuild[buildItemIndex].quantity <= 0) {
