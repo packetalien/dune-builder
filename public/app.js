@@ -292,13 +292,20 @@ function handleAddItem(itemData) {
     
     // Calculate power from the new data structure
     const powerValue = itemData.power_cost_or_generated;
-    if (powerValue && powerValue.includes('(Generated)')) {
-        const powerNum = parseInt(powerValue.replace(' (Generated)', ''));
-        if (!isNaN(powerNum)) {
-            itemNetPower += powerNum;
+    if (powerValue) {
+        // Convert to string for checking if it includes "(Generated)"
+        const powerStr = String(powerValue);
+        if (powerStr.includes('(Generated)')) {
+            const powerNum = parseInt(powerStr.replace(' (Generated)', ''));
+            if (!isNaN(powerNum)) {
+                itemNetPower += powerNum;
+            }
+        } else {
+            const powerNum = parseInt(powerStr);
+            if (!isNaN(powerNum)) {
+                itemNetPower -= powerNum;
+            }
         }
-    } else if (powerValue && !isNaN(parseInt(powerValue))) {
-        itemNetPower -= parseInt(powerValue);
     }
     
     if (existingItem) {
