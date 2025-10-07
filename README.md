@@ -1,6 +1,8 @@
-# Dune: Awakening Base Build Calculator
+# Dune: Awakening Base Build Calculator v2.1
 
 A comprehensive web-based calculator for planning and optimizing base builds in Dune: Awakening. This tool helps players calculate material requirements, power consumption, water production, and storage needs for their base structures.
+
+**✨ New in v2.1**: Verified October 2025 game data with human-validated stats from actual gameplay!
 
 ## 🚀 Features
 
@@ -24,16 +26,19 @@ A comprehensive web-based calculator for planning and optimizing base builds in 
 - **Health & Durability**: Real in-game health values for all structures
 
 ### Data Accuracy
+- **✅ Verified October 2025 Data**: All values cross-referenced with dune.gaming.tools, Fextralife Wiki, Game8, Reddit, and Steam discussions
 - **CSV-Validated Data**: All values sourced from `raw_data.csv` with human-validated in-game numbers
-- **Real Production Rates**: Accurate water and power production values
-- **Correct Material Costs**: Verified crafting material requirements
-- **Updated Health Values**: Actual structure durability from the game
+- **Real Production Rates**: Accurate water and power production values (e.g., Windtrap: 0.75 ml/s, Death Still: 25k ml/hour)
+- **Correct Material Costs**: Verified crafting material requirements with full component names
+- **Updated Health Values**: Actual structure durability from the game (e.g., Large Ore Refinery: 4000 HP)
+- **Current Patch**: Updated for game version 1.1.15.0
 
 ## 🛠️ Technology Stack
 
 - **Backend**: Node.js with Express.js
 - **Frontend**: Vanilla JavaScript, HTML5, CSS3
-- **Data**: JSON-based component database
+- **Data Processing**: CSV parser for raw data validation
+- **Data Storage**: JSON-based component database
 - **API**: RESTful endpoints for calculations and data retrieval
 
 ## 📦 Installation
@@ -82,6 +87,7 @@ A comprehensive web-based calculator for planning and optimizing base builds in 
 ## 📊 API Endpoints
 
 - `GET /api/items` - Retrieve all building components
+- `GET /api/water-mechanics` - Get water mechanics data (factions, environments, rates)
 - `POST /api/calculate` - Calculate totals for a build
 - `POST /api/export` - Generate build report
 - `GET /` - Serve the main application
@@ -135,11 +141,21 @@ The application uses `raw_data.csv` as the source of truth for all in-game value
 - **Neutral**: Standard rates
 
 ### Environmental Factors
-- **Deep Desert**: Reduced water production
-- **Oasis**: Increased water production
+- **Deep Desert**: 30% reduced water production
+- **Oasis**: 50% increased water production
 - **Standard**: Normal production rates
 
-## 📈 Recent Updates
+## 📈 Version History
+
+### v2.1 - October 2025 Verified Data Update (Current)
+- ✅ **Verified Game Data**: All values cross-referenced with multiple sources (dune.gaming.tools, Fextralife, Game8, Reddit, Steam)
+- ✅ **CSV Data Source**: Human-validated stats from actual gameplay (patch 1.1.15.0)
+- ✅ **Enhanced Water Mechanics**: Updated consumption rates (Player: 3 ml/h, Industrial: 10 ml/h)
+- ✅ **Accurate Environmental Modifiers**: Deep Desert (-30%), Oasis (+50%), Standard (0%)
+- ✅ **Fixed Material Components**: Full material names in components strings
+- ✅ **CSV Parser Integration**: Real-time data validation from raw_data.csv
+- ✅ **Updated API**: New `/api/water-mechanics` endpoint for water calculation data
+- ✅ **Bug Fixes**: Fixed reserved word issues, improved error handling
 
 ### v2.0 - Enhanced Water Calculator & Data Validation
 - ✅ **CSV Data Integration**: All values now sourced from human-validated game data
@@ -171,7 +187,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## ⚠️ Disclaimer
 
-This is a fan-made tool for Dune: Awakening. All game data is sourced from actual gameplay and validated against in-game values. This tool is not affiliated with or endorsed by the official game developers.
+This is a fan-made tool for Dune: Awakening. All game data is sourced from actual gameplay and validated against multiple community sources including:
+- https://dune.gaming.tools
+- https://duneawakening.wiki.fextralife.com  
+- https://game8.co
+- Reddit r/duneawakening
+- Steam Community Discussions
+
+Data verified as of October 2025 (Game Patch 1.1.15.0). This tool is not affiliated with or endorsed by the official game developers.
+
+## 📚 Data Sources
+
+All building stats, material costs, power values, and water production rates have been:
+1. Extracted from actual gameplay
+2. Cross-referenced with community wikis and tools
+3. Validated against patch notes
+4. Stored in `raw_data.csv` for transparency and community validation
+
+Found an error? Please open an issue or submit a pull request with verified data!
 
 ---
 
