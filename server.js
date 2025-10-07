@@ -156,7 +156,6 @@ app.post('/api/export', async (req, res) => {
 
 // Helper functions
 async function calculateBuildTotals(buildItems) {
-    const csvData = await parseCSVData();
     const totalMaterials = {};
     let totalPowerGenerated = 0;
     let totalPowerConsumed = 0;
@@ -165,44 +164,43 @@ async function calculateBuildTotals(buildItems) {
     let totalWaterCapacity = 0;
 
     buildItems.forEach(({ item, quantity }) => {
-        // Find item in CSV data
-        const csvItem = csvData.find(csvItem => csvItem.Name === item.name);
-        if (!csvItem) {
-            console.warn(`Item not found in CSV: ${item.name}`);
-            return;
-        }
-
         // Parse components string to extract materials
-        if (csvItem.Components && csvItem.Components.trim() !== '') {
-            const componentsStr = csvItem.Components.replace(/[()]/g, '');
+        if (item.components && item.components.trim() !== '') {
+            const componentsStr = item.components.replace(/[()]/g, '');
             const components = componentsStr.split(',').map(comp => comp.trim());
             
             components.forEach(component => {
                 const parts = component.trim().split(' ');
                 if (parts.length >= 2) {
-                    const quantity = parseInt(parts[parts.length - 1]);
+                    const qty = parseInt(parts[parts.length - 1]);
                     const materialName = parts.slice(0, -1).join(' ');
-                    if (!isNaN(quantity)) {
-                        totalMaterials[materialName] = (totalMaterials[materialName] || 0) + (quantity * quantity);
+                    if (!isNaN(qty)) {
+                        totalMaterials[materialName] = (totalMaterials[materialName] || 0) + (qty * quantity);
                     }
                 }
             });
         }
 
-        // Calculate power
-        const powerValue = csvItem.Power_Cost_or_Generated;
-        if (powerValue && powerValue.includes('(Generated)')) {
-            const powerNum = parseInt(powerValue.replace(' (Generated)', ''));
-            if (!isNaN(powerNum)) {
-                totalPowerGenerated += powerNum * quantity;
+        // Calculate power - handle both string and number formats
+        const powerValue = item.power_cost_or_generated;
+        if (powerValue) {
+            const powerStr = String(powerValue);
+            if (powerStr.includes('(Generated)')) {
+                const powerNum = parseInt(powerStr.replace(' (Generated)', ''));
+                if (!isNaN(powerNum)) {
+                    totalPowerGenerated += powerNum * quantity;
+                }
+            } else {
+                const powerNum = parseInt(powerStr);
+                if (!isNaN(powerNum)) {
+                    totalPowerConsumed += powerNum * quantity;
+                }
             }
-        } else if (powerValue && !isNaN(parseInt(powerValue))) {
-            totalPowerConsumed += parseInt(powerValue) * quantity;
         }
 
         // Calculate water production (from water sources)
-        if (csvItem.Water_Gather_Rate) {
-            const rateStr = csvItem.Water_Gather_Rate;
+        if (item.water_gather_rate) {
+            const rateStr = item.water_gather_rate;
             const rate = parseFloat(rateStr.replace(' ml/s', ''));
             if (!isNaN(rate)) {
                 totalWaterProduced += rate * 3600 * quantity; // Convert to ml/hour
@@ -210,31 +208,31 @@ async function calculateBuildTotals(buildItems) {
         }
         
         // Calculate water yield from death stills
-        if (csvItem.Water_Yield && csvItem.Water_Processing_Time) {
-            const yield = parseInt(csvItem.Water_Yield);
-            const timeStr = csvItem.Water_Processing_Time;
+        if (item.water_yield && item.water_processing_time) {
+            const waterYield = parseInt(item.water_yield);
+            const timeStr = item.water_processing_time;
             const timeParts = timeStr.split(':');
             let timeInSeconds = 0;
             if (timeParts.length === 3) {
                 timeInSeconds = parseInt(timeParts[0]) * 3600 + parseInt(timeParts[1]) * 60 + parseInt(timeParts[2]);
             }
-            if (!isNaN(yield) && !isNaN(timeInSeconds) && timeInSeconds > 0) {
-                const ratePerHour = (yield / timeInSeconds) * 3600;
+            if (!isNaN(waterYield) && !isNaN(timeInSeconds) && timeInSeconds > 0) {
+                const ratePerHour = (waterYield / timeInSeconds) * 3600;
                 totalWaterProduced += ratePerHour * quantity;
             }
         }
 
         // Calculate water storage capacity
-        if (csvItem.Water_Capacity && csvItem.Water_Capacity !== '') {
-            const capacity = parseInt(csvItem.Water_Capacity);
+        if (item.water_capacity && item.water_capacity !== '') {
+            const capacity = parseInt(item.water_capacity);
             if (!isNaN(capacity)) {
                 totalWaterCapacity += capacity * quantity;
             }
         }
         
         // Calculate inventory slots for storage
-        if (csvItem.Inventory_Slots && csvItem.Inventory_Slots !== '' && csvItem.Inventory_Slots !== 'NA') {
-            const slots = parseInt(csvItem.Inventory_Slots);
+        if (item.inventory_slots && item.inventory_slots !== '' && item.inventory_slots !== 'NA') {
+            const slots = parseInt(item.inventory_slots);
             if (!isNaN(slots)) {
                 totalWaterStorage += slots * quantity;
             }
