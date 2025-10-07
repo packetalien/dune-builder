@@ -1,0 +1,333 @@
+[
+  {
+    "category": "Refineries",
+    "name": "Blood Purifier",
+    "health": 1250,
+    "power_cost_or_generated": 15,
+    "inventory_slots": 5,
+    "inventory_volume": 200,
+    "components": "(Salvaged Metal 90)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Small Ore Refinery",
+    "health": 1250,
+    "power_cost_or_generated": 15,
+    "inventory_slots": 5,
+    "inventory_volume": 200,
+    "components": "(Salvaged Metal 90)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Medium Ore Refinery",
+    "health": 2500,
+    "power_cost_or_generated": 45,
+    "inventory_slots": 5,
+    "inventory_volume": 500,
+    "components": "(Steel Ingots 125, Cobalt Paste 60, Complex Machinery 50)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Large Ore Refinery",
+    "health": 4000,
+    "power_cost_or_generated": 350,
+    "inventory_slots": 5,
+    "inventory_volume": 1000,
+    "components": "(Plastinium 380, Silicon Blocks 540, Spice Melange 400, Complex Machinery 200, Cobalt Paste 745, Advanced Machinery 40)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Small Chemical Factory",
+    "health": 1250,
+    "power_cost_or_generated": 15,
+    "inventory_slots": 5,
+    "inventory_volume": 200,
+    "components": "(Copper 45)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Medium Chemical Factory",
+    "health": 2500,
+    "power_cost_or_generated": 350,
+    "inventory_slots": 5,
+    "inventory_volume": 200,
+    "components": "(Duraluminum 200, Silicon Blocks 90, Complex Machinery 50, Spice Melange 35)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Spice Refinery",
+    "health": 1250,
+    "power_cost_or_generated": 200,
+    "inventory_slots": 5,
+    "inventory_volume": 200,
+    "components": "(Duraluminum 160, Silicon Blocks 130, Cobalt Paste 80, Complex Machinery 70)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Medium Spice Refinery",
+    "health": 2500,
+    "power_cost_or_generated": 350,
+    "inventory_slots": 5,
+    "inventory_volume": 500,
+    "components": "(Plastinium 285, Silicon Blocks 225, Spice Melange 135, Complex Machinery 100, Cobalt Paste 190)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Large Spice Refinery",
+    "health": 4000,
+    "power_cost_or_generated": 500,
+    "inventory_slots": 5,
+    "inventory_volume": 1000,
+    "components": "(Plastinium 950, Silicon Blocks 1080, Complex Machinery 350, Spice Melange 1000, Cobalt Paste 1110, Advanced Machinery 55)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Fremen Death Still",
+    "health": 1250,
+    "power_cost_or_generated": 200,
+    "inventory_slots": "NA",
+    "inventory_volume": "NA",
+    "water_processing_time": "1:00:00",
+    "water_yield": 25000,
+    "components": "(Steel Ingots 60, Silicon Blocks 28, Complex Machinery 32)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Refineries",
+    "name": "Advanced Fremen Deathstill",
+    "health": 2500,
+    "power_cost_or_generated": 350,
+    "inventory_slots": "NA",
+    "inventory_volume": "NA",
+    "water_processing_time": "0:50:00",
+    "water_yield": 45000,
+    "components": "(Duraluminum 240, Silicon Blocks 170, Complex Machinery 70)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Fabricators",
+    "name": "Fabricator",
+    "health": 1250,
+    "power_cost_or_generated": 10,
+    "inventory_slots": 10,
+    "inventory_volume": 200,
+    "components": "Salvaged Metal 75",
+    "placed_with": "Construction Tool",
+    "fabricates_upto": "Iron Products"
+  },
+  {
+    "category": "Fabricators",
+    "name": "Garment Fabricator",
+    "health": 1250,
+    "power_cost_or_generated": 40,
+    "inventory_slots": 10,
+    "inventory_volume": 200,
+    "components": "(Steel Ingots 40, Complex Machinery 30)",
+    "placed_with": "Construction Tool",
+    "fabricates_upto": "Duraluminum Products"
+  },
+  {
+    "category": "Fabricators",
+    "name": "Advanced Garment Fabricator",
+    "health": 2500,
+    "power_cost_or_generated": 150,
+    "inventory_slots": 10,
+    "inventory_volume": 200,
+    "components": "(Plastinium 140, Silicon Blocks 180, Complex Machinery 100, Spice Melange 45, Cobalt Paste 150, Thermoelectric Cooler 30)",
+    "placed_with": "Construction Tool",
+    "fabricates_upto": "Plastinium Products"
+  },
+  {
+    "category": "Utilities",
+    "name": "Sub-Fief Console",
+    "health": 1250,
+    "power_cost_or_generated": 15,
+    "inventory_slots": 5,
+    "inventory_volume": 50,
+    "components": "(Salvaged Metal 25)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Advanced Sub-Fief Console",
+    "health": 2500,
+    "power_cost_or_generated": 15,
+    "inventory_slots": 5,
+    "inventory_volume": 50,
+    "components": "(Salvaged Metal 40)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Fuel-Powered Generator",
+    "health": 2500,
+    "power_cost_or_generated": "75 (Generated)",
+    "inventory_slots": 5,
+    "inventory_volume": 100,
+    "components": "(Salvaged Metal 45)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Wind Turbine Omni-Directional",
+    "health": 2500,
+    "power_cost_or_generated": "150 (Generated)",
+    "inventory_slots": 5,
+    "inventory_volume": 100,
+    "components": "(Steel Ingots 45, Cobalt Paste 65, Calibration Servos 20)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Wind Turbine Directional",
+    "health": 3500,
+    "power_cost_or_generated": "350 (Generated)",
+    "inventory_slots": 5,
+    "inventory_volume": 100,
+    "components": "(Duraluminum 120, Cobalt Paste 160, Calibration Servos 50, Spice Melange 30)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Spice Powered Generator",
+    "health": 4000,
+    "power_cost_or_generated": "1000 (Generated)",
+    "inventory_slots": 5,
+    "inventory_volume": 100,
+    "components": "(Plastinium 430, Silicon Blocks 180, Spice Melange 270, Complex Machinery 100, Cobalt Paste 300, Advanced Machinery 40)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Repair Station",
+    "health": 1250,
+    "power_cost_or_generated": 20,
+    "inventory_slots": 5,
+    "inventory_volume": 200,
+    "components": "(Iron 40)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Recycler",
+    "health": 1250,
+    "power_cost_or_generated": 15,
+    "inventory_slots": 20,
+    "inventory_volume": 100,
+    "components": "(Copper 30)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Windtrap",
+    "health": 3500,
+    "power_cost_or_generated": 75,
+    "inventory_slots": 5,
+    "inventory_volume": 25,
+    "water_capacity": 500,
+    "water_gather_rate": "0.75 ml/s",
+    "components": "(Steel Ingots 90, Silicon Blocks 30, Calibration Servos 30)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Large Windtrap",
+    "health": 3500,
+    "power_cost_or_generated": 135,
+    "inventory_slots": 5,
+    "inventory_volume": 25,
+    "water_capacity": 500,
+    "water_gather_rate": "1.75 ml/s",
+    "components": "(Duraluminum 240, Silicon Blocks 250, Calibration Servos 70, Spice Melange 5)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Pentashield Surface Vertical",
+    "health": 2500,
+    "power_cost_or_generated": 3,
+    "inventory_slots": "NA",
+    "inventory_volume": "NA",
+    "components": "(Steel Ingots 2, Cobalt Paste 20, Calibration Servos 6)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Utilities",
+    "name": "Pentashield Surface Horizontal",
+    "health": 2500,
+    "power_cost_or_generated": 3,
+    "inventory_slots": "NA",
+    "inventory_volume": "NA",
+    "components": "(Steel Ingots 2, Cobalt Paste 20, Calibration Servos 6)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Storage",
+    "name": "Small Storage Container",
+    "health": 2500,
+    "power_cost_or_generated": 10,
+    "inventory_slots": 250,
+    "components": "(Salvaged Metal 35)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Storage",
+    "name": "Chest",
+    "health": 1250,
+    "power_cost_or_generated": 20,
+    "inventory_slots": 750,
+    "components": "(Iron 20)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Storage",
+    "name": "Storage Container",
+    "health": 2500,
+    "power_cost_or_generated": 45,
+    "inventory_slots": 1750,
+    "components": "(Aluminum 45, Silicon Blocks 8)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Storage",
+    "name": "Medium Storage Container",
+    "health": 4000,
+    "power_cost_or_generated": 100,
+    "inventory_slots": 3500,
+    "components": "(Plastinium 70, Silicon Blocks 14, Spice Melange 4)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Storage",
+    "name": "Water Cistern",
+    "health": 1250,
+    "inventory_slots": 5000,
+    "components": "(Copper 25)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Storage",
+    "name": "Medium Water Cistern",
+    "health": 2500,
+    "inventory_slots": 25000,
+    "components": "(Steel Ingots 60, Silicon Blocks 30)",
+    "placed_with": "Construction Tool"
+  },
+  {
+    "category": "Storage",
+    "name": "Large Water Cistern",
+    "health": 2500,
+    "inventory_slots": 100000,
+    "components": "(Duraluminum 150, Silicon Blocks 160, Industrial Pump 25)",
+    "placed_with": "Construction Tool"
+  }
+]
