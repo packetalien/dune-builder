@@ -141,7 +141,7 @@ function initializeWaterCalculatorControls() {
 // Load building data from API
 async function loadBuildingData() {
     try {
-        const response = await fetch('/api/items');
+        const response = await fetch('api/items');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -408,7 +408,7 @@ function handleChangeQuantity(itemName, change) {
 // Calculate and display totals for materials and power
 async function calculateAndDisplayTotals() {
     try {
-        const response = await fetch('/api/calculate', {
+        const response = await fetch('api/calculate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -617,7 +617,7 @@ async function exportBuildReport() {
     try {
         const buildName = prompt('Enter a name for your build (optional):', 'my_build') || 'build';
         
-        const response = await fetch('/api/export', {
+        const response = await fetch('api/export', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
